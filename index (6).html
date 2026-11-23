@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Koreys tili 1A · Uy vazifasi · @with_IrodaKorean</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f5f6fa;--card:#fff;--ink:#1f2333;--muted:#6b7183;--line:#e2e5ee;
+  --c1:#2f6fd6;--c2:#6a4fbf;--c3:#178a7a;--accent:var(--c1);
+  --ok:#1f9d55;--okbg:#e6f6ec;--bad:#d64545;--badbg:#fdecec;--soft:#e9effb;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Nunito","Noto Sans KR",system-ui,sans-serif;line-height:1.5}
+.ko{font-family:"Noto Sans KR","Nunito",sans-serif}
+header{background:var(--accent);color:#fff;padding:22px 16px 26px}
+header .in,main,footer{max-width:760px;margin:0 auto}
+header h1{margin:0;font-size:1.55rem;font-weight:800}
+header p{margin:4px 0 0;opacity:.9;font-size:.95rem}
+.back{background:rgba(255,255,255,.2);color:#fff;border:0;border-radius:999px;padding:6px 14px;font:inherit;font-weight:700;font-size:.85rem;cursor:pointer;margin-bottom:10px}
+main{padding:18px 16px 10px}
+.card{background:var(--card);border-radius:16px;padding:18px;margin-bottom:14px;box-shadow:0 1px 2px rgba(20,30,60,.05)}
+.card h3{margin:0 0 2px;font-size:1.12rem}
+.card h2{margin:0 0 4px}
+.instr{color:var(--muted);font-style:italic;font-size:.86rem;margin-bottom:12px}
+.rule{background:var(--soft);border-radius:10px;padding:10px 12px;font-size:.9rem;margin-bottom:12px}
+label.nm{font-weight:800;display:block;margin-bottom:8px}
+input[type=text],textarea{width:100%;font:inherit;font-size:1rem;padding:10px 12px;border:2px solid var(--line);border-radius:12px;background:#fff;color:var(--ink)}
+input[type=text]:focus,textarea:focus{outline:none;border-color:var(--accent)}
+.unit{display:block;width:100%;text-align:left;border:0;cursor:pointer;font:inherit;color:inherit;border-left:8px solid var(--uc);position:relative}
+.unit .tag{color:var(--uc);font-weight:800;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase}
+.unit h2{margin:2px 0 4px;font-size:1.3rem}
+.unit .topics{color:var(--muted);font-size:.92rem}
+.bar{height:7px;background:var(--line);border-radius:9px;margin:14px 0 6px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--uc);border-radius:9px;transition:width .3s}
+.small{font-size:.82rem;color:var(--muted)}
+.tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:16px}
+.tabs button{padding:9px 4px;border-radius:999px;border:2px solid var(--line);background:#fff;font:inherit;font-weight:700;font-size:.9rem;cursor:pointer;color:var(--ink)}
+.tabs button.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.tabs button .dot{color:var(--ok)}
+.tabs button.on .dot{color:#fff}
+.bank{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:9px}
+.flip{border:2px solid var(--line);border-radius:14px;background:#fff;min-height:86px;cursor:pointer;font:inherit;padding:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;color:var(--ink)}
+.flip .w{font-size:1.2rem;font-weight:700}
+.flip .r{font-size:.78rem;color:var(--muted)}
+.flip .t{font-size:.92rem;font-weight:700;color:var(--accent)}
+.flip.open{background:var(--soft);border-color:var(--accent)}
+.say{border:0;background:none;cursor:pointer;font-size:1rem;padding:2px 6px;border-radius:8px}
+.say:hover{background:var(--soft)}
+.q{border-top:1px solid var(--line);padding:12px 0}
+.q:first-of-type{border-top:0}
+.qn{color:var(--accent);font-weight:800;margin-right:6px}
+.gl{display:block;font-size:.82rem;color:var(--muted);margin-top:2px}
+.opts{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px}
+.opt{border:2px solid var(--line);background:#fff;border-radius:11px;padding:7px 14px;font:inherit;font-weight:700;cursor:pointer;color:var(--ink)}
+.opt.right{background:var(--okbg);border-color:var(--ok);color:var(--ok)}
+.opt.wrong{background:var(--badbg);border-color:var(--bad);color:var(--bad)}
+.opt:disabled{cursor:default}
+.row{display:flex;gap:7px;margin-top:8px;flex-wrap:wrap}
+.row input{flex:1 1 100px;min-width:0}
+.btn{border:0;background:var(--accent);color:#fff;border-radius:11px;padding:9px 16px;font:inherit;font-weight:800;cursor:pointer}
+.btn.ghost{background:#fff;color:var(--accent);border:2px solid var(--line)}
+.fb{font-size:.88rem;margin-top:6px;font-weight:700}
+.fb.ok{color:var(--ok)} .fb.no{color:var(--bad)} .fb.hint{color:var(--muted);font-weight:600}
+input.right{border-color:var(--ok);background:var(--okbg)} input.wrong{border-color:var(--bad);background:var(--badbg)}
+.match{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.match .col{display:flex;flex-direction:column;gap:9px}
+.mi{border:2px solid var(--line);background:#fff;border-radius:12px;padding:10px;font:inherit;font-weight:700;font-size:1.02rem;cursor:pointer;color:var(--ink)}
+.mi.sel{border-color:var(--accent);background:var(--soft)}
+.mi.done{border-color:var(--ok);background:var(--okbg);color:var(--ok);cursor:default}
+.mi.shake{animation:sh .35s;border-color:var(--bad)}
+@keyframes sh{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+.text p{font-size:1.08rem;line-height:1.9;margin:0 0 12px}
+.gw{border:0;background:none;font:inherit;color:inherit;padding:0;border-bottom:2px dotted var(--accent);cursor:pointer;position:relative}
+.tip{display:inline-block;background:var(--ink);color:#fff;font-family:"Nunito",sans-serif;font-size:.8rem;border-radius:7px;padding:1px 7px;margin-left:4px;vertical-align:middle;line-height:1.5}
+.build{min-height:50px;border:2px dashed var(--line);border-radius:12px;padding:8px;display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.chip{border:2px solid var(--line);background:#fff;border-radius:10px;padding:6px 12px;font:inherit;font-size:1.02rem;cursor:pointer;color:var(--ink)}
+.chip.used{visibility:hidden}
+.build .chip{background:var(--soft);border-color:var(--accent)}
+.clicktext{font-size:1.12rem;line-height:2.4}
+.cw{border:0;background:none;font:inherit;padding:2px 1px;margin:0;border-radius:6px;cursor:pointer;color:inherit}
+.cw.sel{background:#fff2c2}
+.cw.right{background:var(--okbg);color:var(--ok);font-weight:700}
+.cw.wrong{background:var(--badbg);color:var(--bad);text-decoration:line-through}
+.cw.missed{outline:2px solid var(--bad)}
+.model{background:#fbfaf4;border-left:5px solid var(--accent);border-radius:10px;padding:12px 14px;font-size:1.02rem;line-height:1.85}
+.model b{color:var(--accent);display:block;font-family:"Nunito",sans-serif}
+textarea{min-height:200px;resize:vertical;line-height:1.7}
+.checks{list-style:none;padding:0;margin:10px 0}
+.checks li{font-size:.92rem;margin:3px 0;color:var(--muted)}
+.checks li.ok{color:var(--ok);font-weight:700}
+.next{display:block;margin:4px auto 16px}
+.syl{border-collapse:separate;border-spacing:5px;margin:0 auto}.syl th{color:var(--accent);font-size:1.05rem;padding:4px}.sylb{border:2px solid var(--line);background:#fff;border-radius:10px;width:56px;height:58px;font:inherit;font-size:1.25rem;font-weight:700;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--ink);padding:0}.sylb .r{font-family:Nunito,sans-serif;font-size:.72rem;color:var(--accent);min-height:1em}.sylb.open{background:var(--soft);border-color:var(--accent)}@media(max-width:520px){.sylb{width:46px;height:52px;font-size:1.1rem}.syl{border-spacing:3px}}.sect{margin:22px 4px 10px;font-size:1.15rem}footer .author{font-weight:800;color:var(--ink);font-size:.92rem}.tg{color:var(--accent);font-weight:800;text-decoration:none}.hauthor{font-weight:700}.hauthor .tg{color:#fff;text-decoration:underline}footer{text-align:center;font-size:.82rem;color:var(--muted);padding:10px 16px 30px}
+.toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 18px;border-radius:12px;font-weight:700;font-size:.9rem;opacity:0;transition:opacity .3s;pointer-events:none;z-index:9}
+.toast.show{opacity:1}
+.copybox{margin-top:10px;display:none}
+.donebadge{display:inline-block;background:var(--okbg);color:var(--ok);font-weight:800;font-size:.75rem;border-radius:999px;padding:2px 9px;margin-left:8px;vertical-align:middle}
+@media(max-width:520px){.row .btn{padding:9px 11px;font-size:.88rem}.tabs button{font-size:.78rem}header h1{font-size:1.3rem}.bank{grid-template-columns:repeat(2,1fr)}.text p{font-size:1.02rem}}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<div class="toast" id="toast"></div>
+<script>
+/* ============ SOZLAMALAR ============ */
+const LEVEL = "1A";
+const BOOK = "«한국어 첫걸음 1A» darsligi asosida";
+const SUB = "한국어 첫걸음 1A · Hangul + 8 dars · Lug'at, o'qish, grammatika va yozuv";
+const AUTHOR = "Tuzuvchi: Iroda Normatova";
+const TG = "with_IrodaKorean";
+const TEACHER = ""; // O'qituvchi ismini shu yerga yozing
+
+/* ============ TOPSHIRIQ YASOVCHILAR ============ */
+const B=(words)=>({type:"bank",title:"So'zlar banki",instr:"So'zni bosing – tarjimasi va o'qilishi chiqadi.",
+  words:words.split(";").map(x=>x.trim()).filter(Boolean).map(x=>{const i=x.indexOf("=");const r=x.slice(i+1).split("|");return[x.slice(0,i).trim(),r[0].trim(),r[1]?r[1].trim():null];})});
+const M=(title,rounds)=>({type:"match",title,instr:"Chap va o'ng tomondagi mos so'zlarni juftlang.",
+  rounds:rounds.map(r=>r.split(";").map(p=>{const i=p.indexOf("=");return[p.slice(0,i).trim(),p.slice(i+1).trim()];}))});
+const C=(title,instr,rule,items)=>({type:"mc",title,instr,rule,items:items.map(([q,gl,o])=>({q,gl,o:o.split("|")}))});
+const F=(title,instr,rule,items)=>({type:"fill",title,instr,rule,items:items.map(([q,a,gl])=>({q,gl,a:a.split("/")}))});
+const T=(items)=>({type:"tf",title:"To'g'ri yoki noto'g'ri?",instr:"Matn bo'yicha belgilang.",items:items.map(([q,a])=>({q,a:!!a}))});
+const O=(items)=>({type:"order",title:"Gap tuzing",instr:"So'zlarni bosib, to'g'ri tartibda gap tuzing.",items:items.map(([gl,w,alt])=>({gl,w:w.split("|"),alt:alt?alt.split(";"):[]}))});
+const X=(title,paras)=>({type:"text",title,instr:"Matnni o'qing. Tagiga chizilgan so'zlarni bosing – tarjimasi chiqadi.",paras});
+const W=(items)=>F("Matndan so'zni toping","Matnlardan mos so'zni topib yozing.","",items.map(([uz,ko])=>[uz,ko]));
+
+/* ===== 한국어 첫걸음 1A — Hangul + 1–8 dars ===== */
+const U = [];
+
+/* 0 · Hangul */
+U.push({label:"Hangul", tag:"한글 배우기 · Alifbo", ko:"한글", uz:"Hangul alifbosi", topics:"Unlilar · Undoshlar · Nafasli va qattiq undoshlar · Qo'shma unlilar · 받침 · Bog'lanish (연음)",
+vocab:[
+ B("아이=bola; 오이=bodring; 우유=sut; 여우=tulki; 나무=daraxt; 바다=dengiz; 모자=shapka; 가수=qo'shiqchi; 지도=xarita; 커피=qahva; 토마토=pomidor; 포도=uzum; 기차=poyezd; 아빠=dada; 오빠=aka (qiz uchun); 사과=olma; 의자=stul; 시계=soat; 가방=sumka; 사람=odam; 책=kitob; 물=suv; 밥=ovqat, guruch; 꽃=gul"),
+ M("Harf va tovush",["ㄱ=g / k;ㄴ=n;ㄷ=d / t;ㄹ=r / l;ㅁ=m;ㅂ=b / p","ㅅ=s;ㅇ=jim / ng;ㅈ=j;ㅊ=ch;ㅋ=k (nafasli);ㅎ=h","ㅏ=a;ㅓ=o (ochiq);ㅗ=o;ㅜ=u;ㅡ=i (ы);ㅣ=i","ㅑ=ya;ㅕ=yo (ochiq);ㅛ=yo;ㅠ=yu;ㅐ=e;ㅘ=va"]),
+ C("Qaysi harf?","Tovushga mos harfni tanlang.","Oddiy → nafasli → qattiq: <b class='ko'>ㄱ ㅋ ㄲ · ㄷ ㅌ ㄸ · ㅂ ㅍ ㅃ · ㅅ ㅆ · ㅈ ㅊ ㅉ</b>",[
+  ["Nafasli «k»","","ㅋ|ㄱ|ㄲ"],["Qattiq «tt»","","ㄸ|ㄷ|ㅌ"],["Nafasli «p»","","ㅍ|ㅂ|ㅃ"],["Qattiq «ss»","","ㅆ|ㅅ|ㅈ"],["Nafasli «ch»","","ㅊ|ㅈ|ㅉ"],["Qo'shma unli «wo»","","ㅝ|ㅘ|ㅚ"]])
+],
+reading:[
+ C("So'zni o'qing","Koreyscha so'zning to'g'ri o'qilishini tanlang.","",[
+  ["나무","","namu|nabu|mamu"],["바다","","bada|pada|bara"],["커피","","kopi|gopi|kobi"],["기차","","gicha|gija|kicha"],["사과","","sagwa|sago|sagua"],["의자","","uija|ija|eja"],["사람","","saram|salam|sarap"],["꽃","","kkot|kot|got"]]),
+ M("Peshlavhalarni o'qing (간판)",["은행=bank;약국=dorixona;병원=shifoxona;화장실=hojatxona;빵집=nonvoyxona;시장=bozor"]),
+ C("받침 tovushi","So'z oxiridagi tovush qanday eshitiladi?","받침da faqat 7 tovush eshitiladi: <b class='ko'>ㄱ ㄴ ㄷ ㄹ ㅁ ㅂ ㅇ</b>. Masalan: 부엌 [부억], 옷 [옫], 앞 [압], 꽃 [꼳].",[
+  ["옷 → [ ? ]","","옫|옷|오"],["앞 → [ ? ]","","압|앞|아프"],["부엌 → [ ? ]","","부억|부어크|부엇"],["낮 → [ ? ]","","낟|나즈|낫"]]),
+ C("Bog'lanish (연음)","Qanday o'qiladi?","받침dan keyin unli kelsa, 받침 keyingi bo'g'inga o'tadi: <b class='ko'>음악 → [으막]</b>.",[
+  ["음악","","[으막]|[음악]|[음마]"],["한국어","","[한구거]|[한국어]|[한구어]"],["사람이에요","","[사라미에요]|[사람이에요]|[사라이에요]"],["옷이","","[오시]|[옫이]|[오디]"]])
+],
+grammar:[
+ F("Bo'g'in tuzing","Harflarni birlashtirib bo'g'in yozing.","Undosh + unli = bo'g'in: <b class='ko'>ㄱ + ㅏ = 가</b>. Unli bilan boshlansa, oldiga <b class='ko'>ㅇ</b> qo'yiladi: <b class='ko'>ㅇ + ㅏ = 아</b>. 받침 pastga yoziladi: <b class='ko'>ㄱ + ㅏ + ㅁ = 감</b>.",[
+  ["ㄴ + ㅏ → …","나"],["ㅁ + ㅗ → …","모"],["ㅇ + ㅜ → …","우"],["ㅅ + ㅣ → …","시"],["ㅎ + ㅏ + ㄴ → …","한"],["ㄱ + ㅜ + ㄱ → …","국"],["ㅂ + ㅏ + ㅂ → …","밥"],["ㅁ + ㅜ + ㄹ → …","물"]]),
+ F("So'zni yozing","O'qilishiga qarab so'zni hangulda yozing.","",[
+  ["a-i (bola)","아이"],["u-yu (sut)","우유"],["ba-da (dengiz)","바다"],["mo-ja (shapka)","모자"],["ga-bang (sumka)","가방"],["sa-ram (odam)","사람"]]),
+ C("Qaysi so'z?","O'zbekcha ma'nosiga mos so'zni tanlang.","",[
+  ["uzum","","포도|토마토|우유"],["poyezd","","기차|커피|기자"],["soat","","시계|시장|의자"],["daraxt","","나무|나라|바다"],["gul","","꽃|꼬리|책"],["kitob","","책|채|첵"]])
+],
+writing:[
+ C("Yakuniy test","To'g'ri javobni tanlang.","",[
+  ["Hangulni kim yaratgan?","","Sejong qirol|Kim Jong|Pak Chong"],["Hangulda nechta asosiy harf bor?","","24 ta|33 ta|10 ta"],["Bo'g'in boshida ㅇ qanday o'qiladi?","","o'qilmaydi|ng|o"],["Qaysi biri qattiq undosh?","","ㄲ|ㅋ|ㄱ"],["밥 so'zidagi 받침 qaysi?","","ㅂ|ㅏ|ㅁ"]]),
+ F("Ismingizni yozing","Quyidagi o'zbek ismlarini hangulda yozing.","Masalan: Aziz → <b class='ko'>아지즈</b>, Malika → <b class='ko'>말리카</b>.",[
+  ["Aziz","아지즈"],["Malika","말리카"],["Dilnoza","딜노자"],["Sardor","사르도르"],["Toshkent","타슈켄트"]])
+]
+});
+
+/* 1 */
+U.push({label:"1-dars", tag:"1-dars · 제1과", ko:"안녕하세요?", uz:"Salom! Tanishaylik", topics:"Davlatlar · Kasblar · Salomlashish · N은/는 N이에요/예요 · N입니다 · N이/가 아니에요",
+vocab:[
+ B("한국=Koreya; 우즈베키스탄=O'zbekiston; 미국=AQSh; 일본=Yaponiya; 중국=Xitoy; 러시아=Rossiya; 영국=Angliya; 프랑스=Fransiya; 독일=Germaniya; 카자흐스탄=Qozog'iston; 튀르키예=Turkiya; 베트남=Vyetnam; 학생=talaba, o'quvchi; 선생님=o'qituvchi; 회사원=kompaniya xodimi; 의사=shifokor; 요리사=oshpaz; 기자=jurnalist; 경찰=politsiyachi; 간호사=hamshira; 운전기사=haydovchi; 가수=qo'shiqchi; 주부=uy bekasi; 은행원=bank xodimi; 사람=odam"),
+ M("Davlat va kasb",["한국=Koreya;미국=AQSh;일본=Yaponiya;중국=Xitoy;러시아=Rossiya;독일=Germaniya","학생=talaba;회사원=kompaniya xodimi;의사=shifokor;요리사=oshpaz;기자=jurnalist;가수=qo'shiqchi"]),
+ C("Salomlashish","Vaziyatga mos iborani tanlang.","Ketayotganga — <b class='ko'>안녕히 가세요</b>, qolayotganga — <b class='ko'>안녕히 계세요</b>.",[
+  ["Birinchi tanishuv: «Tanishganimdan xursandman»","","만나서 반가워요.|안녕히 가세요.|감사합니다."],["Mehmon ketyapti. Mezbon aytadi:","","안녕히 가세요.|안녕히 계세요.|만나서 반가워요."],["Mehmon ketyapti. Mehmon aytadi:","","안녕히 계세요.|안녕히 가세요.|안녕하세요?"],["Sovg'a oldingiz:","","감사합니다.|안녕히 계세요.|반가워요."],["Rasmiy salom:","","안녕하십니까?|안녕?|고마워요."]])
+],
+reading:[
+ X("말리카의 블로그",["안녕하세요? 제 이름은 말리카예요. 저는 우즈베키스탄 사람이에요. [고향|tug'ilgan joy]은 사마르칸트예요. 저는 한빛 [한국어학당|koreys tili markazi] 학생이에요.","[제 친구|mening do'stim]는 사쿠라 씨예요. 사쿠라 씨는 일본 사람이에요. 학생이 아니에요. 회사원이에요. 만나서 반가워요!"]),
+ T([["말리카 씨는 우즈베키스탄 사람이에요.",1],["말리카 씨의 고향은 타슈켄트예요.",0],["사쿠라 씨는 일본 사람이에요.",1],["사쿠라 씨는 학생이에요.",0]]),
+ X("Sinfda taqdimot",["다니엘: 여러분, 안녕하십니까? 저는 다니엘입니다. 미국 사람입니다. 학생입니다. 만나서 반갑습니다.","왕웨이: 다니엘 씨, [영국|Angliya] 사람입니까?","다니엘: 아니요, 영국 사람이 아닙니다. 미국 사람입니다.","말리카: 다니엘 씨는 [요리사|oshpaz]입니까?","다니엘: 아니요, 요리사가 아닙니다. 학생입니다."]),
+ C("Savollarga javob bering","Matnlar bo'yicha javobni tanlang.","",[["다니엘 씨는 어느 나라 사람이에요?","","미국 사람이에요.|영국 사람이에요.|중국 사람이에요."],["다니엘 씨는 요리사예요?","","아니요, 학생이에요.|네, 요리사예요.|아니요, 의사예요."],["말리카 씨의 고향은 어디예요?","","사마르칸트예요.|서울이에요.|도쿄예요."]]),
+ W([["tug'ilgan joy (vatan)","고향"],["mening do'stim","제 친구"]])
+],
+grammar:[
+ C("N은/는 N이에요/예요","To'g'ri qo'shimchani tanlang.","받침 bor → <b class='ko'>은 / 이에요</b>, 받침 yo'q → <b class='ko'>는 / 예요</b>.",[
+  ["저___ 학생이에요.","","는|은"],["민준 씨___ 한국 사람이에요.","","는|은"],["선생님___ 한국 사람이에요.","","은|는"],["저는 학생___.","","이에요|예요"],["다니엘 씨는 요리사___?","","예요|이에요"],["저는 의사___.","","예요|이에요"]]),
+ F("Rasmiy uslub: 입니다","Gapni rasmiy uslubga o'tkazing.","<b class='ko'>이에요/예요 → 입니다</b>, so'roq: <b class='ko'>입니까?</b>",[
+  ["저는 회사원이에요. → 저는 …","회사원입니다/회사원입니다."],["수진 씨는 선생님이에요. → 수진 씨는 …","선생님입니다/선생님입니다."],["민준 씨는 한국 사람이에요? → 민준 씨는 한국 …","사람입니까/사람입니까?"],["이 사람은 의사예요? → 이 사람은 …","의사입니까/의사입니까?"]]),
+ C("N이/가 아니에요","이 yoki 가 ni tanlang.","받침 bor → <b class='ko'>이 아니에요</b>, yo'q → <b class='ko'>가 아니에요</b>. Rasmiy: <b class='ko'>아닙니다</b>.",[
+  ["저는 기자___ 아니에요.","","가|이"],["사쿠라 씨는 학생___ 아닙니다.","","이|가"],["민준 씨는 요리사___ 아니에요.","","가|이"],["이것은 지도___ 아니에요.","","가|이"],["저는 선생님___ 아니에요.","","이|가"]]),
+ C("Javob bering","Savolga to'g'ri javobni tanlang.","",[
+  ["왕웨이 씨는 일본 사람이에요? (🇨🇳)","","아니요, 일본 사람이 아니에요. 중국 사람이에요.|네, 일본 사람이에요.|아니요, 일본 사람가 아니에요."],["사쿠라 씨는 회사원입니까? (✓)","","네, 회사원입니다.|아니요, 회사원입니다.|네, 회사원입니까?"],["이름이 뭐예요?","","저는 아지즈예요.|저는 학생이 아니에요.|네, 반가워요."]]),
+ O([["Men o'zbekman.","저는|우즈베키스탄|사람이에요."],["Sakura yapon.","사쿠라 씨는|일본|사람이에요."],["Men shifokor emasman.","저는|의사가|아니에요."]])
+],
+writing:{title:"Blogim uchun o'zim haqimda",
+ click:{rule:"저<b>는</b> · 학생<b>이에요</b> · 회사원<b>이</b> 아니에요 · 의사<b>예요</b>",text:"안녕하세요? *저은|저는* 아지즈예요. 우즈베키스탄 사람이에요. 저는 *학생예요|학생이에요*. *회사원가|회사원이* 아니에요. 제 친구는 민준 씨예요. 민준 씨는 *의사이에요|의사예요*."},
+ model:{title:"말리카의 블로그",text:"안녕하세요? 제 이름은 말리카예요. 저는 우즈베키스탄 사람이에요. 고향은 사마르칸트예요. 저는 한빛 한국어학당 학생이에요. 제 친구는 사쿠라 씨예요. 사쿠라 씨는 일본 사람이에요. 학생이 아니에요. 회사원이에요. 만나서 반가워요!"},
+ task:"Blogingiz uchun o'zingiz haqida 4–5 gap yozing.",include:"Yozing: ismingiz · qaysi davlatdansiz · shahringiz (고향) · kasbingiz · do'stingiz haqida (-이/가 아니에요)",min:4,max:8,
+ checks:[["sent","Kamida 4 ta gap"],[/(이에요|예요|입니다)/,"-이에요/예요 ishlatilgan"],[/사람/,"Davlatingiz aytilgan (… 사람)"],[/아니(에요|ㅂ니다|닙니다)/,"-이/가 아니에요 ishlatilgan"]]}
+});
+
+/* 2 */
+U.push({label:"2-dars", tag:"2-dars · 제2과", ko:"이게 뭐예요?", uz:"Bu nima?", topics:"Sinf jihozlari · Buyumlar · 이것/그것/저것 · N이/가 있어요/없어요 · N의 N · 누구 거예요?",
+vocab:[
+ B("책=kitob; 공책=daftar; 연필=qalam; 볼펜=ruchka; 지우개=o'chirg'ich; 책상=parta, stol; 의자=stul; 컴퓨터=kompyuter; 사전=lug'at; 가방=sumka; 시계=soat; 달력=taqvim; 휴대폰=telefon; 지갑=hamyon; 우산=soyabon; 커피=qahva; 물=suv; 거울=ko'zgu; 이것=bu; 그것=u (yaqin); 저것=anavi; 누구=kim; 뭐=nima; 있어요=bor; 없어요=yo'q"),
+ M("Buyumlar",["공책=daftar;연필=qalam;볼펜=ruchka;지우개=o'chirg'ich;책상=parta;의자=stul","가방=sumka;시계=soat;달력=taqvim;휴대폰=telefon;지갑=hamyon;우산=soyabon"]),
+ C("이것 / 그것 / 저것","To'g'ri javobni tanlang.","<b class='ko'>이</b> — menga yaqin, <b class='ko'>그</b> — sizga yaqin, <b class='ko'>저</b> — ikkalamizdan uzoq. <b class='ko'>이것이 → 이게, 이것은 → 이건</b>.",[
+  ["A: 이게 뭐예요? B: ___ 지우개예요.","","그건|이게|저게"],["A: 저건 뭐예요? B: ___ 시계예요.","","저건|이건|그게"],["이것이 → (qisqa)","","이게|이건|이거"],["그것은 → (qisqa)","","그건|그게|그거"],["Anavi narsa nima?","","저게 뭐예요?|이게 뭐예요?|그게 누구예요?"]])
+],
+reading:[
+ X("말리카의 가방",["이건 제 가방이에요. 우즈베키스탄 가방이에요. 아주 [예뻐요|chiroyli].","가방에 한국어 책[하고|va] 공책이 있어요. 연필도 있어요. [그런데|lekin] 지우개는 없어요. 휴대폰하고 [거울|ko'zgu]도 있어요. 물도 있어요.","이 지갑은 제 거예요. 그런데 이 우산은 제 거가 아니에요. 사쿠라 씨 거예요."]),
+ T([["말리카 씨 가방은 한국 가방이에요.",0],["가방에 공책하고 연필이 있어요.",1],["말리카 씨는 지우개가 있어요.",0],["우산은 사쿠라 씨 거예요.",1]]),
+ C("Savollarga javob bering","Matn bo'yicha javobni tanlang.","",[["말리카 씨 가방은 어때요?","","아주 예뻐요.|아주 커요.|한국 가방이에요."],["가방에 뭐가 없어요?","","지우개|거울|물"],["지갑은 누구 거예요?","","말리카 씨 거예요.|사쿠라 씨 거예요.|선생님 거예요."]]),
+ W([["ko'zgu","거울"],["lekin","그런데"]])
+],
+grammar:[
+ C("N이/가 있어요 / 없어요","이 yoki 가 ni tanlang.","받침 bor → <b class='ko'>이</b>, yo'q → <b class='ko'>가</b>. <b class='ko'>있어요</b> — bor, <b class='ko'>없어요</b> — yo'q.",[
+  ["책___ 있어요.","","이|가"],["시계___ 없어요.","","가|이"],["연필___ 있어요?","","이|가"],["우산___ 없어요.","","이|가"],["휴대폰___ 있어요.","","이|가"],["컴퓨터___ 있어요.","","가|이"]]),
+ C("N의 N · 제","To'g'ri shaklni tanlang.","<b class='ko'>의</b> = «-ning». <b class='ko'>저의 → 제</b>, <b class='ko'>나의 → 내</b>, <b class='ko'>너의 → 네</b>.",[
+  ["mening kitobim","","제 책|저 책|제의 책"],["o'qituvchining lug'ati","","선생님의 사전|선생님에 사전|선생님이 사전"],["Minjunning sumkasi","","민준 씨 가방|민준 씨가 가방|민준 씨를 가방"],["mening ismim","","제 이름|저 이름|내의 이름"]]),
+ F("누구 거예요?","Javobni yozing.","<b class='ko'>N 거예요</b> = «N niki». <b class='ko'>제 거예요</b> = meniki.",[
+  ["A: 이 우산은 누구 거예요? B: (meniki) …","제 거예요"],["A: 이 볼펜은 누구 거예요? B: (Sakuraniki) 사쿠라 씨 …","거예요"],["A: 이 사전은 누구 거예요? B: (o'qituvchiniki) 선생님 …","거예요"],["Kimniki? → 누구 …","거예요/거예요?"]]),
+ O([["Bu nima?","이게|뭐예요?"],["Sumkamda kitob bor.","가방에|책이|있어요."],["Bu soyabon meniki emas.","이 우산은|제 거가|아니에요."]])
+],
+writing:{title:"Mening sumkam",
+ click:{rule:"책<b>이</b> 있어요 · 사전<b>은</b> 없어요 · <b>제</b> 거예요",text:"이건 제 가방이에요. 가방에 *책가|책이* 있어요. 공책하고 연필도 있어요. 그런데 사전은 *있어요|없어요*. 이 지갑은 *저|제* 거예요."},
+ model:{title:"말리카의 가방",text:"이건 제 가방이에요. 우즈베키스탄 가방이에요. 아주 예뻐요. 가방에 한국어 책하고 공책이 있어요. 연필도 있어요. 그런데 지우개는 없어요. 휴대폰하고 거울도 있어요. 이 지갑은 제 거예요. 그런데 이 우산은 제 거가 아니에요. 사쿠라 씨 거예요."},
+ task:"Sumkangizni tanishtiring: unda nima bor, nima yo'q.",include:"Yozing: 이건 제 가방이에요 · sumkada nima bor (있어요) · nima yo'q (없어요) · kimniki (거예요)",min:4,max:8,
+ checks:[["sent","Kamida 4 ta gap"],[/있어요/,"있어요 ishlatilgan"],[/없어요/,"없어요 ishlatilgan"],[/거(예요|에요)/,"N 거예요 ishlatilgan"]]}
+});
+
+/* 3 */
+U.push({label:"3-dars", tag:"3-dars · 제3과", ko:"학교에 가요", uz:"Maktabga boraman", topics:"Fe'llar · Joylar · V-아요/어요 · N을/를 · N에 가다 · N에서",
+vocab:[
+ B("가다=bormoq; 오다=kelmoq; 먹다=yemoq; 마시다=ichmoq; 보다=ko'rmoq; 읽다=o'qimoq (kitob); 쓰다=yozmoq; 공부하다=o'qimoq (dars); 사다=sotib olmoq; 배우다=o'rganmoq; 일하다=ishlamoq; 쉬다=dam olmoq; 자다=uxlamoq; 만나다=uchrashmoq; 전화하다=qo'ng'iroq qilmoq; 청소하다=tozalamoq; 운동하다=sport qilmoq; 듣다=tinglamoq; 학교=maktab; 편의점=kichik do'kon; 공원=bog', park; 도서관=kutubxona; 식당=oshxona; 카페=kafe; 집=uy; 회사=kompaniya; 은행=bank"),
+ M("Fe'llar va joylar",["먹다=yemoq;마시다=ichmoq;읽다=o'qimoq;쓰다=yozmoq;배우다=o'rganmoq;쉬다=dam olmoq","학교=maktab;도서관=kutubxona;식당=oshxona;편의점=kichik do'kon;공원=park;회사=kompaniya"]),
+ C("Qaysi fe'l?","Mos fe'lni tanlang.","",[
+  ["커피를 ___","","마셔요|먹어요|읽어요"],["책을 ___","","읽어요|마셔요|자요"],["영화를 ___","","봐요|써요|들어요"],["음악을 ___","","들어요|봐요|사요"],["밥을 ___","","먹어요|마셔요|봐요"]])
+],
+reading:[
+ X("아지즈와 민준의 메시지",["민준: 아지즈 씨, 지금 어디에 있어요?","아지즈: 학교 도서관에 있어요. [숙제|uy vazifasi]해요. 민준 씨는 뭐 해요?","민준: 저는 카페에서 친구를 [기다려요|kutyapman]. [이따가|keyinroq] 같이 저녁 먹어요!","아지즈: 좋아요! 어디에서 먹어요?","민준: 학교 [앞|old] 식당에서 먹어요. 거기 불고기가 아주 맛있어요.","아지즈: 네, 6시에 식당 앞에서 만나요!"]),
+ T([["아지즈 씨는 지금 도서관에서 숙제해요.",1],["민준 씨는 지금 식당에 있어요.",0],["두 사람은 6시에 식당 앞에서 만나요.",1],["식당의 불고기가 맛없어요.",0]]),
+ C("Savollarga javob bering","Matn bo'yicha javobni tanlang.","",[["민준 씨는 지금 뭐 해요?","","카페에서 친구를 기다려요.|도서관에서 공부해요.|식당에서 밥을 먹어요."],["두 사람은 저녁에 어디에서 만나요?","","식당 앞|카페|도서관"],["식당에서 뭐가 맛있어요?","","불고기|비빔밥|김밥"]]),
+ W([["kutmoq (kutyapman)","기다려요"],["keyinroq","이따가"],["old","앞"]])
+],
+grammar:[
+ F("V-아요/어요/해요","Fe'lni -아요/어요 shaklida yozing.","ㅏ, ㅗ → <b class='ko'>-아요</b> · boshqa → <b class='ko'>-어요</b> · 하다 → <b class='ko'>해요</b>. Qisqarish: 가요, 와요, 봐요, 마셔요, 배워요, 써요.",[
+  ["가다 → …","가요"],["먹다 → …","먹어요"],["오다 → …","와요"],["마시다 → …","마셔요"],["배우다 → …","배워요"],["쓰다 → …","써요"],["공부하다 → …","공부해요"],["읽다 → …","읽어요"]]),
+ C("N을/를","을 yoki 를 ni tanlang.","받침 bor → <b class='ko'>을</b>, yo'q → <b class='ko'>를</b>. Tartib: Ega + To'ldiruvchi + Fe'l.",[
+  ["밥___ 먹어요.","","을|를"],["커피___ 마셔요.","","를|을"],["책___ 읽어요.","","을|를"],["영화___ 봐요.","","를|을"],["한국어___ 배워요.","","를|을"],["빵___ 사요.","","을|를"]]),
+ C("N에 / N에서","에 yoki 에서 ni tanlang.","<b class='ko'>에</b> — qayerga (가다/오다). <b class='ko'>에서</b> — qayerda biror ish qilinadi.",[
+  ["학교___ 가요.","","에|에서"],["도서관___ 공부해요.","","에서|에"],["집___ 쉬어요.","","에서|에"],["은행___ 가요.","","에|에서"],["식당___ 밥을 먹어요.","","에서|에"],["회사___ 일해요.","","에서|에"]]),
+ O([["Men koreys tilini o'rganaman.","저는|한국어를|배워요."],["Kutubxonaga boraman.","도서관에|가요."],["Kafeda qahva ichaman.","카페에서|커피를|마셔요."]])
+],
+writing:{title:"Do'stimga xabar: mening kunim",
+ click:{rule:"도서관<b>에</b> 가요 · 도서관<b>에서</b> 공부해요 · 밥<b>을</b> 먹어요 · <b>마셔요</b>",text:"오늘 아침에 *도서관에서|도서관에* 가요. *도서관에|도서관에서* 한국어를 공부해요. 그리고 식당에서 *밥를|밥을* 먹어요. 카페에서 커피를 *마시어요|마셔요*."},
+ model:{title:"아지즈의 메시지",text:"민준 씨, 안녕하세요? 저는 지금 학교 도서관에 있어요. 도서관에서 숙제해요. 이따가 카페에 가요. 카페에서 친구를 만나요. 그리고 같이 식당에서 저녁을 먹어요."},
+ task:"Do'stingizga bugungi kuningiz haqida xabar yozing.",include:"Yozing: hozir qayerdasiz · nima qilyapsiz (N을/를 + V-아요/어요) · qayerga borasiz (N에 가요) · u yerda nima qilasiz (N에서)",min:4,max:8,
+ checks:[["sent","Kamida 4 ta gap"],[/(을|를) /,"N을/를 ishlatilgan"],[/에 (가요|와요|가|와|다녀요)/,"N에 가다/오다 ishlatilgan"],[/에서 /,"N에서 ishlatilgan"]]}
+});
+
+/* 4 */
+U.push({label:"4-dars", tag:"4-dars · 제4과", ko:"화장실이 어디에 있어요?", uz:"Hojatxona qayerda?", topics:"Joylashuv · Joylar · N에 있어요 · 위/아래/앞/뒤/옆 · Sino-koreys sonlar · V-(으)세요",
+vocab:[
+ B("위=ust; 아래=past; 밑=tag; 앞=old; 뒤=orqa; 옆=yon; 안=ich; 밖=tashqari; 왼쪽=chap tomon; 오른쪽=o'ng tomon; 사이=orasi; 여기=bu yer; 거기=u yer; 저기=ana u yer; 화장실=hojatxona; 사무실=ofis, idora; 버스 정류장=avtobus bekati; 엘리베이터=lift; 교실=sinf xonasi; 계단=zinapoya; 우체국=pochta; 약국=dorixona; 층=qavat; 번=raqam; 호=xona raqami"),
+ M("Joylashuv so'zlari",["위=ust;아래=past;앞=old;뒤=orqa;옆=yon;안=ich","화장실=hojatxona;사무실=ofis;계단=zinapoya;교실=sinf xonasi;약국=dorixona;우체국=pochta"]),
+ C("Sino-koreys sonlar","Raqamning o'qilishini tanlang.","일 이 삼 사 오 육 칠 팔 구 십 · 백 = 100. Telefon raqamida 0 = <b class='ko'>공</b>.",[
+  ["3층","","삼 층|세 층|사 층"],["15","","십오|오십|십육"],["302호","","삼백이 호|삼십이 호|삼백이십 호"],["010","","공일공|영일영|일공일"],["99","","구십구|구구|아흔아홉"],["7번","","칠 번|일곱 번|팔 번"]])
+],
+reading:[
+ X("아지즈의 방",["제 방은 [기숙사|yotoqxona] 4층에 있어요. 방이 크지 않아요. 그렇지만 아주 [깨끗해요|toza].","방 안에 [침대|karavot]하고 책상이 있어요. 침대는 [창문|deraza] 옆에 있어요. 책상 위에 컴퓨터하고 가족 사진이 있어요. 책상 밑에 가방이 있어요. 의자 뒤에 [옷장|shkaf]이 있어요.","기숙사 1층에 편의점이 있어요. 그리고 기숙사 앞에 버스 정류장이 있어요. 아주 [편해요|qulay]."]),
+ T([["아지즈 씨 방은 기숙사 4층에 있어요.",1],["침대는 문 옆에 있어요.",0],["책상 위에 컴퓨터하고 가족 사진이 있어요.",1],["기숙사 뒤에 버스 정류장이 있어요.",0]]),
+ C("Savollarga javob bering","Matn bo'yicha javobni tanlang.","",[["책상 밑에 뭐가 있어요?","","가방|옷장|침대"],["옷장은 어디에 있어요?","","의자 뒤에|창문 옆에|책상 위에"],["편의점은 어디에 있어요?","","기숙사 1층에|기숙사 앞에|4층에"]]),
+ W([["yotoqxona","기숙사"],["karavot","침대"],["deraza","창문"]])
+],
+grammar:[
+ C("N이/가 N에 있어요","To'g'ri gapni tanlang.","Narsa + <b class='ko'>이/가</b> + joy + <b class='ko'>에 있어요/없어요</b>. Odam (hurmat): <b class='ko'>계세요</b>.",[
+  ["Bank maktab oldida.","","은행이 학교 앞에 있어요.|은행이 학교 앞에서 있어요.|은행을 학교 앞에 있어요."],["Aziz sinfda yo'q.","","아지즈 씨가 교실에 없어요.|아지즈 씨가 교실에서 없어요.|아지즈 씨는 교실을 없어요."],["O'qituvchi ofisdalar.","","선생님은 사무실에 계세요.|선생님은 사무실에서 계세요.|선생님은 사무실에 있으세요."],["Pochta qayerda?","","우체국이 어디에 있어요?|우체국이 어디에서 있어요?|우체국을 어디에 있어요?"]]),
+ F("위/아래/앞/뒤/옆/안","Joylashuvni yozing.","Avval narsa, keyin joylashuv so'zi: <b class='ko'>책상 위에</b> = stol ustida.",[
+  ["stol ustida → 책상 …","위에"],["stul tagida → 의자 …","밑에/아래에"],["uy orqasida → 집 …","뒤에"],["bank yonida → 은행 …","옆에"],["sumka ichida → 가방 …","안에"],["maktab oldida → 학교 …","앞에"]]),
+ F("V-(으)세요","Fe'lni -(으)세요 shaklida yozing.","받침 yo'q → <b class='ko'>-세요</b>, bor → <b class='ko'>-으세요</b>. Maxsus: 먹다 → <b class='ko'>드세요</b>, 자다 → <b class='ko'>주무세요</b>.",[
+  ["가다 → …","가세요"],["읽다 → …","읽으세요"],["앉다 → …","앉으세요"],["쓰다 → …","쓰세요"],["전화하다 → …","전화하세요"],["먹다 (maxsus) → …","드세요"]]),
+ O([["Hojatxona qayerda?","화장실이|어디에|있어요?"],["Mushuk stul tagida.","고양이가|의자|밑에|있어요."],["O'ngga boring.","오른쪽으로|가세요."]])
+],
+writing:{title:"Mening xonam",
+ click:{rule:"방<b>이</b> · 침대<b>는</b> 창문 옆<b>에</b> 있어요 · 앉<b>으세요</b>",text:"제 *방가|방이* 기숙사 3층에 있어요. 침대는 창문 *옆에서|옆에* 있어요. 책상 *위에|위를* 컴퓨터가 있어요. 친구가 와요. \"여기 *앉세요|앉으세요*.\""},
+ model:{title:"아지즈의 방",text:"제 방은 기숙사 4층에 있어요. 방이 크지 않아요. 그렇지만 아주 깨끗해요. 방 안에 침대하고 책상이 있어요. 침대는 창문 옆에 있어요. 책상 위에 컴퓨터하고 가족 사진이 있어요. 책상 밑에 가방이 있어요."},
+ task:"Xonangiz yoki uyingizni tanishtiring.",include:"Yozing: xonangiz nechanchi qavatda (층) · xonada nima bor · narsalar qayerda (위/아래/앞/뒤/옆에 있어요)",min:4,max:8,
+ checks:[["sent","Kamida 4 ta gap"],[/층/,"Qavat (층) aytilgan"],[/(위|아래|밑|앞|뒤|옆|안|사이)에/,"Joylashuv so'zi ishlatilgan"],[/있어요/,"N에 있어요 ishlatilgan"]]}
+});
+
+/* 5 */
+U.push({label:"5-dars", tag:"5-dars · 제5과", ko:"몇 시에 일어나요?", uz:"Soat nechada turasiz?", topics:"Koreyscha sonlar · Vaqt va kunlar · N시 N분 · N에 (vaqt) · V-았/었어요 · N부터 N까지",
+vocab:[
+ B("하나=bir; 둘=ikki; 셋=uch; 넷=to'rt; 다섯=besh; 여섯=olti; 일곱=yetti; 여덟=sakkiz; 아홉=to'qqiz; 열=o'n; 열둘=o'n ikki; 시=soat; 분=daqiqa; 반=yarim; 월요일=dushanba; 화요일=seshanba; 수요일=chorshanba; 목요일=payshanba; 금요일=juma; 토요일=shanba; 일요일=yakshanba; 어제=kecha; 오늘=bugun; 내일=ertaga; 아침=ertalab; 오후=tushdan keyin; 저녁=kechqurun; 주말=dam olish kunlari; 일어나다=turmoq; 걸리다=(vaqt) ketmoq"),
+ M("Sonlar va kunlar",["하나=1;둘=2;셋=3;넷=4;다섯=5;열=10","월요일=dushanba;화요일=seshanba;수요일=chorshanba;목요일=payshanba;금요일=juma;토요일=shanba"]),
+ C("Soat nechada?","Vaqtning to'g'ri o'qilishini tanlang.","Soat — koreyscha son (<b class='ko'>한 시, 두 시, 세 시, 네 시</b>), daqiqa — sino-koreys son (<b class='ko'>이십 분</b>). 30 daqiqa = <b class='ko'>반</b>.",[
+  ["3:20","","세 시 이십 분|삼 시 이십 분|세 시 스무 분"],["1:00","","한 시|일 시|하나 시"],["4:30","","네 시 반|사 시 반|네 시 삼 분"],["9:15","","아홉 시 십오 분|구 시 십오 분|아홉 시 열다섯 분"],["12:05","","열두 시 오 분|십이 시 오 분|열두 시 다섯 분"],["7:45","","일곱 시 사십오 분|칠 시 사십오 분|일곱 시 마흔다섯 분"]])
+],
+reading:[
+ X("다니엘 씨의 일기",["10월 12일 토요일 ☀️ 맑음","오늘은 토요일이었어요. 수업이 없었어요. [그래서|shuning uchun] 아홉 시에 일어났어요.","아침에 빵하고 [우유|sut]를 먹었어요. 열한 시에 친구들하고 [경복궁|Kyonbokkun saroyi]에 갔어요. 경복궁은 정말 [아름다웠어요|go'zal edi]. [한복|hanbok]을 입었어요. 사진을 많이 찍었어요.","오후 세 시부터 다섯 시까지 인사동에서 쇼핑했어요. 저녁에는 아지즈 씨 집에서 우즈베키스탄 음식 «플롭»을 먹었어요. 정말 맛있었어요! 오늘은 아주 재미있었어요."]),
+ T([["토요일에 수업이 없었어요.",1],["다니엘 씨는 일곱 시에 일어났어요.",0],["다니엘 씨는 경복궁에서 한복을 입었어요.",1],["저녁에 식당에서 플롭을 먹었어요.",0]]),
+ C("Savollarga javob bering","Matn bo'yicha javobni tanlang.","",[["다니엘 씨는 몇 시에 경복궁에 갔어요?","","열한 시에|아홉 시에|세 시에"],["몇 시부터 몇 시까지 쇼핑했어요?","","세 시부터 다섯 시까지|아홉 시부터 열한 시까지|다섯 시부터 일곱 시까지"],["아침에 뭐 먹었어요?","","빵하고 우유|플롭|김밥"]]),
+ W([["shuning uchun","그래서"],["sut","우유"]])
+],
+grammar:[
+ C("N에 (vaqt)","에 kerakmi?","Vaqtdan keyin <b class='ko'>에</b>: 일곱 시에, 월요일에, 저녁에. Lekin <b class='ko'>어제, 오늘, 내일, 지금, 매일</b> + 에 ✗.",[
+  ["일곱 시___ 일어나요.","","에|—"],["오늘___ 영화를 봐요.","","—|에"],["토요일___ 친구를 만나요.","","에|—"],["내일___ 학교에 가요.","","—|에"],["저녁___ 운동해요.","","에|—"],["지금___ 공부해요.","","—|에"]]),
+ F("V-았/었어요","Fe'lni o'tgan zamonda yozing.","ㅏ, ㅗ → <b class='ko'>-았어요</b> · boshqa → <b class='ko'>-었어요</b> · 하다 → <b class='ko'>했어요</b>. 듣다 → <b class='ko'>들었어요</b>.",[
+  ["가다 → …","갔어요"],["오다 → …","왔어요"],["먹다 → …","먹었어요"],["마시다 → …","마셨어요"],["공부하다 → …","공부했어요"],["듣다 → …","들었어요"],["보다 → …","봤어요"],["학생이다 → 학생…","이었어요"]]),
+ C("N부터 N까지","To'g'ri variantni tanlang.","Vaqt: <b class='ko'>부터 … 까지</b>. Joy: <b class='ko'>에서 … 까지</b>.",[
+  ["soat 9 dan 1 gacha","","아홉 시부터 한 시까지|아홉 시에서 한 시에|아홉 시까지 한 시부터"],["dushanbadan jumagacha","","월요일부터 금요일까지|월요일에 금요일에|월요일까지 금요일부터"],["uydan maktabgacha","","집에서 학교까지|집부터 학교에|집에 학교까지"],["Uydan maktabgacha 30 daqiqa ketadi.","","집에서 학교까지 30분 걸려요.|집에서 학교까지 30분 있어요.|집부터 학교까지 30분 가요."]]),
+ O([["Soat nechada turasiz?","몇 시에|일어나요?"],["Kecha do'stimni uchratdim.","어제|친구를|만났어요."],["Dars soat 9 dan 1 gacha.","수업은|아홉 시부터|한 시까지예요."]])
+],
+writing:{title:"Kundalik: kechagi kunim",
+ click:{rule:"아침 일곱 시<b>에</b> · <b>어제</b> (에 ✗) · <b>먹었어요</b> · 세 시<b>부터</b> 다섯 시<b>까지</b>",text:"*어제에|어제* 아침 일곱 시에 일어났어요. 빵을 *먹았어요|먹었어요*. 오후 세 시*에서|부터* 다섯 시까지 도서관에서 *공부하었어요|공부했어요*."},
+ model:{title:"다니엘 씨의 일기",text:"오늘은 토요일이었어요. 수업이 없었어요. 그래서 아홉 시에 일어났어요. 아침에 빵하고 우유를 먹었어요. 열한 시에 친구들하고 경복궁에 갔어요. 오후 세 시부터 다섯 시까지 인사동에서 쇼핑했어요. 오늘은 아주 재미있었어요."},
+ task:"Kecha nima qilganingizni kundalik shaklida yozing.",include:"Yozing: soat nechada turdingiz (N시에) · nima qildingiz (-았/었어요) · qachondan qachongacha (부터 … 까지) · kun qanday o'tdi",min:5,max:9,
+ checks:[["sent","Kamida 5 ta gap"],[/시에/,"N시에 ishlatilgan"],[/(았|었|했)어요/,"O'tgan zamon -았/었어요 ishlatilgan"],[/부터[\s\S]*까지/,"N부터 N까지 ishlatilgan"]]}
+});
+
+/* 6 */
+U.push({label:"6-dars", tag:"6-dars · 제6과", ko:"이거 얼마예요?", uz:"Bu qancha turadi?", topics:"Oziq-ovqat · Sanoq so'zlari · Pul · N 주세요 · 얼마예요? · N하고 N · V-고 싶어요",
+vocab:[
+ B("라면=ramen; 바나나=banan; 김밥=kimbap; 우유=sut; 과자=pechenye; 아이스크림=muzqaymoq; 주스=sharbat; 계란=tuxum; 수박=tarvuz; 사과=olma; 빵=non; 개=dona; 병=shisha; 잔=piyola, stakan; 권=dona (kitob); 장=varaq (qog'oz, chipta); 명=kishi; 줄=o'ram (kimbap); 사다=sotib olmoq; 팔다=sotmoq; 주다=bermoq; 싸다=arzon; 비싸다=qimmat; 원=von (pul); 얼마=qancha; 모두=hammasi, jami"),
+ M("Mahsulot va sanoq so'zlari",["라면=ramen;과자=pechenye;계란=tuxum;수박=tarvuz;주스=sharbat;아이스크림=muzqaymoq","사과 한 개=bitta olma;우유 두 병=ikki shisha sut;커피 세 잔=uch piyola qahva;책 네 권=to'rtta kitob;학생 다섯 명=besh talaba;표 한 장=bitta chipta"]),
+ C("Qaysi sanoq so'zi?","Mos sanoq so'zini tanlang.","Narsa + tub son (한, 두, 세, 네) + sanoq so'zi: <b class='ko'>사과 한 개</b>.",[
+  ["커피 한 ___","","잔|권|명"],["책 두 ___","","권|병|장"],["학생 세 ___","","명|개|잔"],["우유 한 ___","","병|명|권"],["표 두 ___","","장|잔|개"],["김밥 두 ___","","줄|권|명"]])
+],
+reading:[
+ X("한빛마트 주말 세일!",["18일(토) ~ 19일(일) · 오전 10시 ~ 밤 10시","🍎 사과 (5개) 8,000원 → 6,000원","🥛 우유 (1L) 2,800원 → 2,000원","🍜 라면 (5개) 5,000원 → 3,900원","🍉 수박 (1개) 20,000원 → 15,000원","★ 3만 원 [이상|...dan ortiq] 사면 [무료 배달|bepul yetkazib berish]! ★ 위치: 한빛 지하철역 2번 [출구|chiqish] 앞"]),
+ T([["세일은 토요일하고 일요일이에요.",1],["세일 때 라면 다섯 개는 3,900원이에요.",1],["2만 원 사면 무료 배달이에요.",0],["마트는 지하철역 앞에 있어요.",1]]),
+ C("Savollarga javob bering","E'lon bo'yicha javobni tanlang.","",[["세일 때 수박은 얼마예요?","","만 오천 원|이만 원|육천 원"],["세일 때 사과 다섯 개는 얼마예요?","","육천 원|팔천 원|삼천구백 원"],["마트는 몇 시까지 해요?","","밤 10시까지|오전 10시까지|저녁 6시까지"]]),
+ W([["bepul yetkazib berish","무료 배달"],["chiqish (metro)","출구"]])
+],
+grammar:[
+ C("Narx: 백, 천, 만 원","Narxning o'qilishini tanlang.","백 = 100 · 천 = 1 000 · 만 = 10 000. «일» aytilmaydi: <b class='ko'>천 원, 만 원</b>.",[
+  ["3,500원","","삼천오백 원|삼백오십 원|삼만오천 원"],["10,000원","","만 원|십천 원|일만천 원"],["25,000원","","이만 오천 원|이십오천 원|이천오백 원"],["500원","","오백 원|오십 원|오천 원"],["12,000원","","만 이천 원|십이천 원|천이백 원"],["100,000원","","십만 원|백천 원|만 원"]]),
+ C("N 주세요 · N하고 N","To'g'ri gapni tanlang.","<b class='ko'>N + son + sanoq so'zi + 주세요</b>. <b class='ko'>하고</b> = va / bilan.",[
+  ["Uch dona olma bering.","","사과 세 개 주세요.|사과 셋 개 주세요.|사과 세 개 줘요?"],["Bir piyola qahva bering.","","커피 한 잔 주세요.|커피 하나 잔 주세요.|커피 한 병 주세요."],["Kimbap va ramen bering.","","김밥하고 라면 주세요.|김밥이고 라면 주세요.|김밥하고 라면 있어요."],["Do'stim bilan xarid qildim.","","친구하고 쇼핑했어요.|친구를 쇼핑했어요.|친구에 쇼핑했어요."]]),
+ F("V-고 싶어요","-고 싶어요 shaklida yozing.","Fe'l o'zagi + <b class='ko'>-고 싶어요</b> (받침ga qaramaydi). O'tgan: <b class='ko'>-고 싶었어요</b>.",[
+  ["먹다 → …","먹고 싶어요"],["가다 → …","가고 싶어요"],["사다 → …","사고 싶어요"],["배우다 → …","배우고 싶어요"],["자다 (o'tgan) → …","자고 싶었어요"]]),
+ O([["Bu qancha turadi?","이거|얼마예요?"],["Ikki shisha sut bering.","우유|두 병|주세요."],["Pibimpap yegim keladi.","비빔밥을|먹고|싶어요."]])
+],
+writing:{title:"Do'koningiz uchun e'lon",
+ click:{rule:"사과 <b>세</b> 개 · 우유 두 <b>병</b> · <b>삼천</b> 원 · 사<b>고 싶어요</b>",text:"한빛 가게 세일! 사과 *셋|세* 개에 이천 원이에요. 우유 두 *잔|병*에 *셋천|삼천* 원이에요. 과일을 *사서 싶어요|사고 싶어요*? 그럼 오세요!"},
+ model:{title:"한빛마트 주말 세일",text:"10월 18일부터 19일까지 주말 세일! 사과 다섯 개에 육천 원이에요. 우유는 이천 원이에요. 라면 다섯 개에 삼천구백 원이에요. 수박하고 사과를 사고 싶어요? 3만 원 이상 사면 무료 배달이에요. 한빛 지하철역 2번 출구 앞에 있어요."},
+ task:"O'z do'koningiz uchun chegirma e'loni yozing.",include:"Yozing: mahsulotlar va narxi (N개/병 … 원) · N하고 N · xaridorga savol (-고 싶어요?) · do'kon qayerda",min:4,max:8,
+ checks:[["sent","Kamida 4 ta gap"],[/원/,"Narx (원) yozilgan"],[/(개|병|잔|권|장|명|줄)/,"Sanoq so'zi ishlatilgan"],[/고 싶/,"-고 싶다 ishlatilgan"]]}
+});
+
+/* 7 */
+U.push({label:"7-dars", tag:"7-dars · 제7과", ko:"날씨가 어때요?", uz:"Havo qanday?", topics:"Fasllar · Ob-havo · Sifatlar · ㅂ noto'g'ri · A/V-고 · 안 / -지 않아요 · -지만",
+vocab:[
+ B("봄=bahor; 여름=yoz; 가을=kuz; 겨울=qish; 맑다=ochiq; 흐리다=bulutli; 비가 오다=yomg'ir yog'moq; 눈이 오다=qor yog'moq; 바람이 불다=shamol esmoq; 기온=harorat; 덥다=issiq; 춥다=sovuq; 따뜻하다=iliq; 시원하다=salqin; 습하다=nam, dim; 건조하다=quruq; 좋다=yaxshi; 나쁘다=yomon; 크다=katta; 작다=kichik; 많다=ko'p; 적다=kam; 재미있다=qiziqarli; 재미없다=zerikarli; 맛있다=mazali; 맛없다=bemaza; 예쁘다=chiroyli; 바쁘다=band"),
+ M("Ob-havo va sifatlar",["봄=bahor;여름=yoz;가을=kuz;겨울=qish;맑다=ochiq;흐리다=bulutli","덥다=issiq;춥다=sovuq;따뜻하다=iliq;시원하다=salqin;건조하다=quruq;습하다=nam"]),
+ C("Zid ma'noli so'z","Antonimni tanlang.","",[
+  ["덥다 ↔","","춥다|따뜻하다|맑다"],["크다 ↔","","작다|많다|좋다"],["많다 ↔","","적다|작다|나쁘다"],["재미있다 ↔","","재미없다|맛없다|바쁘다"],["좋다 ↔","","나쁘다|예쁘다|흐리다"],["맛있다 ↔","","맛없다|재미없다|적다"]])
+],
+reading:[
+ X("사쿠라의 편지",["말리카 씨에게","말리카 씨, [잘 지내요|yaxshi yuribsizmi]? 저는 지금 제주도에 있어요. 제주도는 서울보다 따뜻해요. 그렇지만 바람이 많이 불어요. 어제는 비가 오고 흐렸지만 오늘은 아주 맑아요.","오늘 아침에 한라산에 갔어요. 산이 [높고|baland va] 아름다웠어요. 조금 [힘들었지만|charchatdi, lekin] 정말 좋았어요.","제주도 [귤|mandarin]은 작지만 아주 [달아요|shirin]. 말리카 씨 [선물|sovg'a]로 귤을 샀어요. 그럼 다음 주에 학교에서 만나요!","10월 25일 제주도에서 사쿠라가"]),
+ T([["제주도는 서울보다 따뜻해요.",1],["제주도는 바람이 안 불어요.",0],["오늘 제주도는 비가 와요.",0],["사쿠라 씨는 말리카 씨 선물을 샀어요.",1]]),
+ C("Savollarga javob bering","Xat bo'yicha javobni tanlang.","",[["오늘 제주도 날씨는 어때요?","","아주 맑아요.|비가 오고 흐려요.|아주 추워요."],["사쿠라 씨는 오늘 아침에 어디에 갔어요?","","한라산에|학교에|시장에"],["제주도 귤은 어때요?","","작지만 달아요.|크고 달아요.|작고 맛없어요."]]),
+ W([["mandarin","귤"],["sovg'a","선물"]])
+],
+grammar:[
+ F("ㅂ noto'g'ri sifatlar","-아요/어요 shaklida yozing.","ㅂ → 우: <b class='ko'>덥다 → 더워요</b>. Istisno: 입다 → 입어요, 좁다 → 좁아요.",[
+  ["덥다 → …","더워요"],["춥다 → …","추워요"],["맵다 → …","매워요"],["쉽다 → …","쉬워요"],["어렵다 → …","어려워요"],["가깝다 → …","가까워요"],["춥다 (o'tgan) → …","추웠어요"]]),
+ F("A/V-고","Ikki so'zni -고 bilan bog'lang.","O'zak + <b class='ko'>-고</b>: <b class='ko'>맑고 시원해요</b>. Zamon oxirgi fe'lda.",[
+  ["맑다 + 시원하다 → 날씨가 … 시원해요.","맑고"],["싸다 + 맛있다 → 그 식당은 … 맛있어요.","싸고"],["따뜻하다 + 꽃이 많다 → 봄에는 … 꽃이 많아요.","따뜻하고"],["비가 오다 + 바람이 불다 → 비가 … 바람이 불었어요.","오고"]]),
+ C("안 / -지 않아요","To'g'ri inkor shaklini tanlang.","<b class='ko'>안 + V</b> = <b class='ko'>V-지 않아요</b>. 하다 fe'llarida: <b class='ko'>공부 안 해요</b>.",[
+  ["춥다 (inkor)","","안 추워요|안 춥어요|춥 안 해요"],["먹다 (inkor, uzun)","","먹지 않아요|먹지 안아요|안 먹지요"],["운동하다 (inkor)","","운동 안 해요|안 운동해요|운동하 안 해요"],["비싸다 (inkor, uzun)","","비싸지 않아요|비싸 않아요|안 비싸지 않아요"],["Kecha yomg'ir yog'madi.","","어제는 비가 안 왔어요.|어제는 비가 안 와요.|어제는 비가 왔지 않아요."]]),
+ C("A/V-지만","To'g'ri gapni tanlang.","<b class='ko'>-지만</b> — «...lekin». O'tgan: <b class='ko'>-았/었지만</b>.",[
+  ["Koreys tili qiyin, lekin qiziqarli.","","한국어는 어렵지만 재미있어요.|한국어는 어렵고 재미없어요.|한국어는 어려워지만 재미있어요."],["Kichkina, lekin toza.","","작지만 깨끗해요.|작고 깨끗해요.|작아지만 깨끗해요."],["Sovuq edi, lekin yaxshi o'tdi.","","추웠지만 좋았어요.|춥지만 좋아요.|추웠고 나빴어요."]]),
+ O([["Bugun havo qanday?","오늘|날씨가|어때요?"],["Havo ochiq va salqin.","날씨가|맑고|시원해요."],["Bu kimchi achchiq emas.","이 김치는|맵지|않아요."]])
+],
+writing:{title:"Shahrimning ob-havosi",
+ click:{rule:"<b>더워요</b> · <b>맑고</b> · <b>춥지만</b> · <b>안 와요</b>",text:"제 고향은 타슈켄트예요. 여름에는 아주 *덥어요|더워요*. 날씨가 *맑아고|맑고* 건조해요. 겨울에는 *춥어지만|춥지만* 눈이 많이 *오 안 아요|안 와요*."},
+ model:{title:"사쿠라의 편지",text:"말리카 씨, 잘 지내요? 저는 지금 제주도에 있어요. 제주도는 서울보다 따뜻해요. 그렇지만 바람이 많이 불어요. 어제는 비가 오고 흐렸지만 오늘은 아주 맑아요. 제주도 귤은 작지만 아주 달아요. 겨울에도 많이 춥지 않아요."},
+ task:"Do'stingizga shahringiz ob-havosi haqida xat yozing.",include:"Yozing: shahringiz · fasllarda havo qanday (A-아요/어요) · -고 · -지만 · inkor (안 / -지 않아요)",min:5,max:9,
+ checks:[["sent","Kamida 5 ta gap"],[/고 /,"-고 ishlatilgan"],[/지만/,"-지만 ishlatilgan"],[/(안 |지 않)/,"Inkor (안 / -지 않아요) ishlatilgan"]]}
+});
+
+/* 8 */
+U.push({label:"8-dars", tag:"8-dars · 제8과", ko:"같이 영화 볼까요?", uz:"Birga kino ko'ramizmi?", topics:"Bo'sh vaqt · Vaqt so'zlari · V-(으)ㄹ까요? · V-(으)ㅂ시다 · 못 V · V-(으)러 가다",
+vocab:[
+ B("영화를 보다=kino ko'rmoq; 쇼핑하다=xarid qilmoq; 게임하다=o'yin o'ynamoq; 요리하다=ovqat pishirmoq; 산책하다=sayr qilmoq; 사진을 찍다=suratga olmoq; 등산하다=tog'ga chiqmoq; 여행하다=sayohat qilmoq; 축구하다=futbol o'ynamoq; 수영하다=suzmoq; 노래하다=qo'shiq aytmoq; 자전거를 타다=velosiped haydamoq; 이번 주=shu hafta; 다음 주=kelasi hafta; 지난주=o'tgan hafta; 주말=dam olish kunlari; 같이=birga; 약속=uchrashuv, va'da; 미안해요=kechirasiz; 좋아요=yaxshi, mayli"),
+ M("Bo'sh vaqt",["산책하다=sayr qilmoq;등산하다=tog'ga chiqmoq;수영하다=suzmoq;요리하다=ovqat pishirmoq;여행하다=sayohat qilmoq;노래하다=qo'shiq aytmoq","이번 주=shu hafta;다음 주=kelasi hafta;지난주=o'tgan hafta;주말=dam olish kunlari;같이=birga;약속=uchrashuv"]),
+ C("Taklifga javob","Mos javobni tanlang.","Rozilik: <b class='ko'>네, 좋아요!</b> · Rad: <b class='ko'>미안해요. 그날은 약속이 있어요.</b>",[
+  ["A: 주말에 같이 영화 볼까요? B: (rozi)","","네, 좋아요. 같이 봐요.|미안해요. 못 봐요.|아니요, 영화예요."],["A: 내일 같이 등산할까요? B: (rad)","","미안해요. 내일은 약속이 있어요.|네, 좋아요!|네, 등산했어요."],["A: 몇 시에 만날까요? B:","","세 시에 만나요.|네, 만나요.|친구를 만났어요."],["A: 뭐 먹을까요? B:","","불고기를 먹어요.|네, 먹을까요.|아니요, 먹어요."]])
+],
+reading:[
+ X("«하나 FC» 축구 동아리",["🌏 한빛 국제 축구 [동아리|to'garak] «하나 FC»","축구를 좋아해요? 한국 친구를 [사귀고|do'stlashmoq] 싶어요? 그럼 «하나 FC»에 오세요! 축구를 잘 못 해도 괜찮아요.","📅 언제: 매주 토요일 오전 10시 ~ 12시","📍 어디: 한빛대학교 [운동장|stadion, maydon]","🍗 연습이 끝나고 같이 점심을 먹으러 가요.","📱 [연락처|aloqa]: 김민준 010-3375-2048"]),
+ T([["축구를 잘해야 해요.",0],["연습은 매주 토요일에 해요.",1],["연습은 운동장에서 해요.",1],["연습이 끝나고 같이 저녁을 먹으러 가요.",0]]),
+ C("Savollarga javob bering","E'lon bo'yicha javobni tanlang.","",[["축구 동아리는 언제 연습해요?","","토요일 오전 10시부터 12시까지|일요일 오후|매일 저녁"],["연습이 끝나고 뭐 해요?","","같이 점심을 먹으러 가요.|같이 영화를 봐요.|집에 가요."],["누구한테 연락해요?","","김민준|아지즈|다니엘"]]),
+ W([["to'garak, klub","동아리"],["aloqa ma'lumoti","연락처"]])
+],
+grammar:[
+ F("V-(으)ㄹ까요?","Taklif shaklida yozing.","받침 yo'q → <b class='ko'>-ㄹ까요?</b> · bor → <b class='ko'>-을까요?</b> · ㄹ 받침 → <b class='ko'>놀까요?</b>",[
+  ["보다 → …","볼까요/볼까요?"],["먹다 → …","먹을까요/먹을까요?"],["만나다 → …","만날까요/만날까요?"],["놀다 → …","놀까요/놀까요?"],["읽다 → …","읽을까요/읽을까요?"],["만들다 → …","만들까요/만들까요?"]]),
+ F("V-(으)ㅂ시다","«Qani, ...aylik!» shaklida yozing.","받침 yo'q → <b class='ko'>-ㅂ시다</b> · bor → <b class='ko'>-읍시다</b>. Kattalarga aytilmaydi!",[
+  ["가다 → …","갑시다"],["먹다 → …","먹읍시다"],["쉬다 → …","쉽시다"],["시작하다 → …","시작합시다"],["찍다 → …","찍읍시다"]]),
+ C("안 / 못","안 yoki 못?","<b class='ko'>안</b> — o'z xohishi bilan qilmaslik · <b class='ko'>못</b> — qila olmaslik.",[
+  ["Suza olmayman (bilmayman).","","수영을 못 해요.|수영을 안 해요.|못 수영해요."],["Achchiq ovqat yeya olmayman.","","매운 음식을 못 먹어요.|매운 음식을 안 먹어요.|매운 음식을 먹지 않아요."],["Boshim og'rib maktabga bora olmadim.","","머리가 아파서 학교에 못 갔어요.|머리가 아파서 학교에 안 갔어요.|머리가 아파서 학교에 못 가요."],["Ertalab nonushta qilmayman (xohlamayman).","","아침을 안 먹어요.|아침을 못 먹어요.|아침을 먹지 못해요."]]),
+ C("V-(으)러 가다","To'g'ri shaklni tanlang.","받침 yo'q yoki ㄹ → <b class='ko'>-러</b> · bor → <b class='ko'>-으러</b>. Faqat 가다/오다/다니다 bilan.",[
+  ["Koreys tilini o'rgangani Koreyaga keldim.","","한국어를 배우러 한국에 왔어요.|한국어를 배우으러 한국에 왔어요.|한국어를 배우러 한국에서 왔어요."],["Tushlik qilgani oshxonaga boramizmi?","","점심 먹으러 식당에 갈까요?|점심 먹러 식당에 갈까요?|점심 먹으러 식당에서 갈까요?"],["Pusanga dam olgani boraman.","","부산에 놀러 가요.|부산에 놀으러 가요.|부산에 놀러 해요."],["Do'stimni ko'rgani kafega boraman.","","친구를 만나러 카페에 가요.|친구를 만나으러 카페에 가요.|친구를 만나러 카페를 가요."]]),
+ O([["Dam olish kuni birga kino ko'ramizmi?","주말에|같이|영화|볼까요?"],["Qani, birga boraylik!","같이|갑시다!"],["Kitob sotib olgani do'konga boraman.","책을|사러|서점에|가요."]])
+],
+writing:{title:"Do'stni taklif qilish",
+ click:{rule:"<b>볼까요</b>? · 보<b>러</b> 가요 · <b>못</b> 가요 · <b>갑시다</b>",text:"민준 씨, 토요일에 같이 영화 *보을까요|볼까요*? 저는 영화를 *보으러|보러* 극장에 가고 싶어요. 일요일에는 약속이 있어서 *안|못* 가요. 토요일에 같이 *가읍시다|갑시다*!"},
+ model:{title:"«하나 FC» e'loni",text:"축구를 좋아해요? 한국 친구를 사귀고 싶어요? 그럼 하나 FC에 오세요! 축구를 잘 못 해도 괜찮아요. 매주 토요일 오전 10시부터 12시까지 연습해요. 연습이 끝나고 같이 점심을 먹으러 가요. 이번 주 토요일에 같이 축구할까요?"},
+ task:"Do'stingizni biror joyga taklif qiladigan xabar yozing.",include:"Yozing: taklif (-(으)ㄹ까요?) · qayerga, nima qilgani (-(으)러 가다) · qachon · qila olmaydigan vaqtingiz (못)",min:4,max:8,
+ checks:[["sent","Kamida 4 ta gap"],[/까요/,"-(으)ㄹ까요? ishlatilgan"],[/러 (가|와|갈|올|다녀)/,"-(으)러 가다 ishlatilgan"],[/못/,"못 ishlatilgan"]]}
+});
+
+/* ===== Topishmoqlar ===== */
+const PZ=(items)=>C("Topishmoq: bu nima / bu kim?","O'ylab ko'ring va to'g'ri javobni tanlang.","",items);
+const PUZ=[
+/*H*/PZ([["ㄱ + ㅏ + ㅂ + ㅏ + ㅇ → ?","Harflarni birlashtiring.","가방|기방|가밥"],["ㅅ + ㅏ + ㄹ + ㅏ + ㅁ → ?","Harflarni birlashtiring.","사람|살암|사란"],["ㄴ + ㅏ + ㅁ + ㅜ → ?","Harflarni birlashtiring.","나무|나모|너무"],["Qaysi so'z «sut»?","","우유|오이|아이"],["Qaysi so'z «bola»?","","아이|오이|우유"],["Qaysi so'z «bodring»?","","오이|아이|여우"]]),
+/*1*/PZ([["병원에서 일해요. 저는 누구예요?","Kasalxonada ishlayman. Men kimman?","의사|요리사|가수"],["식당에서 음식을 만들어요. 저는 누구예요?","Oshxonada ovqat tayyorlayman.","요리사|경찰|기자"],["학교에서 한국어를 가르쳐요. 저는 누구예요?","Maktabda koreys tilidan dars beraman.","선생님|회사원|주부"],["노래를 해요. 저는 누구예요?","Qo'shiq aytaman.","가수|의사|은행원"],["서울은 어느 나라에 있어요?","Seul qaysi davlatda?","한국|일본|중국"],["도쿄는 어느 나라에 있어요?","Tokio qaysi davlatda?","일본|중국|미국"]]),
+/*2*/PZ([["시간을 봐요. 이게 뭐예요?","Vaqtni ko'raman. Bu nima?","시계|달력|지갑"],["돈이 있어요. 이게 뭐예요?","Ichida pul bor. Bu nima?","지갑|가방|우산"],["비가 와요. 뭐가 필요해요?","Yomg'ir yog'yapti. Nima kerak?","우산|시계|사전"],["연필로 썼어요. 틀렸어요! 뭐가 필요해요?","Qalam bilan yozdim, xato! Nima kerak?","지우개|볼펜|공책"],["단어를 몰라요. 뭐가 필요해요?","So'zni bilmayman. Nima kerak?","사전|달력|의자"],["날짜를 봐요. 이게 뭐예요?","Sanani ko'raman. Bu nima?","달력|시계|컴퓨터"]]),
+/*3*/PZ([["책을 읽어요. 여기는 어디예요?","Kitob o'qiyman. Bu yer qayer?","도서관|식당|은행"],["밥을 먹어요. 여기는 어디예요?","Ovqatlanaman. Bu yer qayer?","식당|도서관|공원"],["커피를 마셔요. 여기는 어디예요?","Qahva ichaman.","카페|은행|학교"],["돈을 찾아요. 여기는 어디예요?","Pul olaman.","은행|편의점|공원"],["산책하고 운동해요. 여기는 어디예요?","Sayr qilaman, sport qilaman.","공원|회사|도서관"],["밤에 자요. 여기는 어디예요?","Kechasi uxlayman.","집|학교|카페"]]),
+/*4*/PZ([["약을 사요. 여기는 어디예요?","Dori sotib olaman.","약국|우체국|사무실"],["편지를 보내요. 여기는 어디예요?","Xat jo'nataman.","우체국|약국|화장실"],["버스를 기다려요. 여기는 어디예요?","Avtobus kutaman.","버스 정류장|엘리베이터|교실"],["1층에서 5층까지 올라가요. 뭘 타요?","1-qavatdan 5-qavatga chiqaman. Nimaga minaman?","엘리베이터|버스|자전거"],["삼 층 + 이 층 = ?","3 + 2 = ?","오 층|육 층|사 층"],["십 + 십오 = ?","10 + 15 = ?","이십오|십이오|이십육"]]),
+/*5*/PZ([["월요일 다음은 무슨 요일이에요?","Dushanbadan keyin qaysi kun?","화요일|수요일|일요일"],["금요일 다음은 무슨 요일이에요?","Jumadan keyin qaysi kun?","토요일|목요일|일요일"],["오늘이 수요일이에요. 내일은?","Bugun chorshanba. Ertaga?","목요일|화요일|금요일"],["오늘이 월요일이에요. 어제는?","Bugun dushanba. Kecha?","일요일|화요일|토요일"],["셋 + 넷 = ?","3 + 4 = ?","일곱|여섯|여덟"],["다섯 + 다섯 = ?","5 + 5 = ?","열|아홉|여덟"]]),
+/*6*/PZ([["사과 한 개에 천 원이에요. 세 개는 얼마예요?","Bitta olma 1000 von. Uchtasi?","삼천 원|천 원|삼백 원"],["커피 한 잔에 오천 원이에요. 두 잔은?","Bitta qahva 5000 von. Ikkitasi?","만 원|오천 원|십만 원"],["여름 과일이에요. 아주 크고 초록색이에요.","Yozgi meva, juda katta va yashil.","수박|사과|바나나"],["노란색 과일이에요. 원숭이가 좋아해요.","Sariq meva, maymun yaxshi ko'radi.","바나나|수박|사과"],["소에서 나와요. 하얀색이에요. 마셔요.","Sigirdan olinadi, oq, ichiladi.","우유|주스|커피"],["차가워요. 여름에 먹어요. 달아요.","Sovuq, yozda yeyiladi, shirin.","아이스크림|라면|계란"]]),
+/*7*/PZ([["눈이 와요. 아주 추워요. 무슨 계절이에요?","Qor yog'adi, juda sovuq. Qaysi fasl?","겨울|여름|봄"],["꽃이 피고 따뜻해요. 무슨 계절이에요?","Gullar ochiladi, iliq.","봄|가을|겨울"],["아주 더워요. 수박을 먹어요. 무슨 계절이에요?","Juda issiq, tarvuz yeymiz.","여름|겨울|가을"],["시원하고 과일이 많아요. 무슨 계절이에요?","Salqin, meva ko'p.","가을|봄|겨울"],["비가 와요. 뭐가 필요해요?","Yomg'ir yog'yapti.","우산|선글라스|수영복"],["하늘에 구름이 많아요. 날씨가 어때요?","Osmonda bulut ko'p.","흐려요|맑아요|더워요"]]),
+/*8*/PZ([["산에 올라가요. 뭐 해요?","Tog'ga chiqaman. Nima qilyapman?","등산해요|수영해요|요리해요"],["물에서 해요. 뭐 해요?","Suvda qilinadi.","수영해요|등산해요|산책해요"],["공으로 해요. 열한 명이에요.","To'p bilan, 11 kishi.","축구해요|노래해요|게임해요"],["카메라로 해요. 뭐 해요?","Kamera bilan qilinadi.","사진을 찍어요|요리해요|노래해요"],["노래방에서 해요. 뭐 해요?","Karaokeda qilinadi.","노래해요|수영해요|산책해요"],["두 바퀴가 있어요. 타요.","Ikki g'ildiragi bor, minamiz.","자전거|자동차|비행기"]])
+];
+
+
+const TABS = /*TABS*/[["vocab","Lug'at"],["reading","O'qish"],["grammar","Grammatika"],["writing","Yozuv"]];
+const COLORS=["#2f6fd6","#6a4fbf","#178a7a","#c2581c","#b03a6f"];
+U.forEach((u,i)=>{if(PUZ[i])u.vocab.splice(2,0,PUZ[i]);});
+const UNITS=U.map((u,i)=>Object.assign(u,{id:"u"+(i+1),num:i+1,color:COLORS[i%COLORS.length]}));
+
+/* ============ SAQLASH ============ */
+const KEY="korean-hw-iroda-cg1a-v1";
+let S={name:"",done:{},score:{},text:{}};
+try{const s=JSON.parse(localStorage.getItem(KEY));if(s)S=Object.assign(S,s);}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
+
+/* ============ YORDAMCHILAR ============ */
+const $=(s,r=document)=>r.querySelector(s);
+const el=(t,a={},...k)=>{const e=document.createElement(t);for(const[n,v]of Object.entries(a)){if(n==="class")e.className=v;else if(n==="html")e.innerHTML=v;else if(n.startsWith("on"))e.addEventListener(n.slice(2),v);else e.setAttribute(n,v);}k.flat().forEach(c=>{if(c!=null)e.append(c.nodeType?c:document.createTextNode(c));});return e;};
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
+const norm=s=>s.replace(/[\s.?!,。~·]/g,"").trim();
+const isKo=s=>/[가-힣]/.test(s);
+function toast(m){const t=$("#toast");t.textContent=m;t.classList.add("show");clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove("show"),1800);}
+function speak(){}
+function sayBtn(txt){return el("button",{class:"say",title:"Tinglash","aria-label":"Tinglash",onclick:e=>{e.stopPropagation();speak(txt);}},"🔊");}
+
+/* Romanizatsiya (soddalashtirilgan) */
+const RI=["g","kk","n","d","tt","r","m","b","pp","s","ss","","j","jj","ch","k","t","p","h"];
+const RM=["a","ae","ya","yae","eo","e","yeo","ye","o","wa","wae","oe","yo","u","wo","we","wi","yu","eu","ui","i"];
+const RF=["","k","k","k","n","n","n","t","l","k","m","l","l","l","p","l","m","p","p","t","t","ng","t","t","k","t","p","t"];
+const RL=["","g","kk","ks","n","nj","nh","d","r","lg","lm","lb","ls","lt","lp","lh","m","b","bs","s","ss","ng","j","ch","k","t","p",""];
+function roman(str){let out="",ch=[...str];for(let i=0;i<ch.length;i++){const c=ch[i].charCodeAt(0);if(c<0xAC00||c>0xD7A3){out+=ch[i];continue;}
+  const n=c-0xAC00,ini=Math.floor(n/588),med=Math.floor((n%588)/28),fin=n%28;let syl=(i===0||!isKo(ch[i-1])?(ini===5?"r":RI[ini]):RI[ini])+RM[med];
+  const nx=ch[i+1]?ch[i+1].charCodeAt(0):0;const nextVowelStart=nx>=0xAC00&&nx<=0xD7A3&&Math.floor((nx-0xAC00)/588)===11;
+  syl+= fin? (nextVowelStart&&fin!==21?RL[fin]:RF[fin]) :"";out+=syl;}return out;}
+
+function taskList(u){const l=[];for(const[t]of TABS){if(t==="writing"&&!Array.isArray(u.writing)){l.push(u.id+"-writing-1");l.push(u.id+"-writing-3");}else u[t].forEach((x,i)=>{if(x.type!=="text"&&x.type!=="bank")l.push(`${u.id}-${t}-${i}`);});}return l;}
+function unitProgress(u){const l=taskList(u);return[l.filter(k=>S.done[k]).length,l.length];}
+function tabDone(u,t){const l=taskList(u).filter(k=>k.startsWith(`${u.id}-${t}-`));return l.length&&l.every(k=>S.done[k]);}
+function markDone(key,score,total){if(!S.done[key]){S.done[key]=true;if(score!=null)S.score[key]=[score,total];save();toast("✅ Topshiriq bajarildi!");refreshTabs();}}
+
+/* ============ TOPSHIRIQ TURLARI ============ */
+function card(t,instr,rule){const c=el("div",{class:"card"},el("h3",{class:isKo(t)?"ko":""},t));if(instr)c.append(el("div",{class:"instr"},instr));if(rule)c.append(el("div",{class:"rule",html:rule}));return c;}
+
+function rBank(x){const c=card(x.title,x.instr);const g=el("div",{class:"bank"});
+  x.words.forEach(([w,t,rm])=>{const b=el("div",{class:"flip",role:"button",tabindex:"0"});
+    const draw=()=>{b.innerHTML="";b.append(el("span",{class:"w ko"},w));if(b.classList.contains("open"))b.append(el("span",{class:"r"},rm||roman(w)),el("span",{class:"t"},t));};
+    b.onclick=()=>{b.classList.toggle("open");draw();};b.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();b.click();}};draw();g.append(b);});
+  c.append(g);return c;}
+
+function rMatch(x,key){const c=card(x.title,x.instr);let r=0,errors=0,total=0;const box=el("div");c.append(box);
+  x.rounds.forEach(rd=>total+=rd.length);
+  const draw=()=>{box.innerHTML="";if(r>=x.rounds.length){box.append(el("div",{class:"fb ok"},`🎉 Barakalla! Xatolar: ${errors}`),el("button",{class:"btn ghost",style:"margin-top:8px",onclick:()=>{r=0;errors=0;draw();}},"Qaytadan"));return;}
+    const rd=x.rounds[r];box.append(el("div",{class:"small",style:"margin-bottom:6px"},`${r+1}-bosqich / ${x.rounds.length}`));
+    let sel=null,left=rd.length;const L=el("div",{class:"col"}),R=el("div",{class:"col"});
+    const L2=shuffle(rd.map((p,i)=>({t:p[0],i}))),R2=shuffle(rd.map((p,i)=>({t:p[1],i})));
+    const mk=(o,side)=>{const b=el("button",{class:"mi"+(isKo(o.t)?" ko":"")},o.t);b.onclick=()=>{if(b.classList.contains("done"))return;
+      if(isKo(o.t))speak(o.t);
+      if(!sel||sel.side===side){if(sel)sel.b.classList.remove("sel");sel={b,o,side};b.classList.add("sel");return;}
+      if(sel.o.i===o.i){sel.b.classList.remove("sel");sel.b.classList.add("done");b.classList.add("done");sel=null;if(--left===0){r++;setTimeout(()=>{if(r>=x.rounds.length)markDone(key,Math.max(0,total-errors),total);draw();},450);}}
+      else{errors++;[b,sel.b].forEach(z=>{z.classList.remove("sel");z.classList.add("shake");setTimeout(()=>z.classList.remove("shake"),400);});sel=null;}};return b;};
+    L2.forEach(o=>L.append(mk(o,"L")));R2.forEach(o=>R.append(mk(o,"R")));box.append(el("div",{class:"match"},L,R));};
+  draw();return c;}
+
+function qhead(i,q,gl){const d=el("div",{},el("span",{class:"qn"},i+1),el("span",{class:isKo(q)?"ko":""},q));if(gl)d.append(el("span",{class:"gl"},gl));return d;}
+
+function rMC(x,key){const c=card(x.title,x.instr,x.rule);let right=0,first=0;
+  x.items.forEach((it,i)=>{const q=el("div",{class:"q"},qhead(i,it.q,it.gl));const o=el("div",{class:"opts"});let tried=false;
+    shuffle(it.o.map((t,j)=>({t,j}))).forEach(({t,j})=>{const b=el("button",{class:"opt"+(isKo(t)?" ko":"")},t);b.onclick=()=>{if(j===0){b.classList.add("right");o.querySelectorAll("button").forEach(z=>z.disabled=true);if(isKo(t)&&t.length>3)speak(t);if(!tried)first++;if(++right===x.items.length)markDone(key,first,x.items.length);}else{b.classList.add("wrong");b.disabled=true;tried=true;}};o.append(b);});
+    q.append(o);c.append(q);});return c;}
+
+function rTF(x,key){const c=card(x.title,x.instr);let right=0,first=0;
+  x.items.forEach((it,i)=>{const q=el("div",{class:"q"},qhead(i,it.q));const o=el("div",{class:"opts"});let tried=false;
+    [["To'g'ri ✓",true],["Noto'g'ri ✗",false]].forEach(([t,v])=>{const b=el("button",{class:"opt"},t);b.onclick=()=>{if(v===it.a){b.classList.add("right");o.querySelectorAll("button").forEach(z=>z.disabled=true);if(!tried)first++;if(++right===x.items.length)markDone(key,first,x.items.length);}else{b.classList.add("wrong");b.disabled=true;tried=true;}};o.append(b);});
+    q.append(o);c.append(q);});return c;}
+
+function rFill(x,key){const c=card(x.title,x.instr,x.rule);let right=0,first=0;
+  x.items.forEach((it,i)=>{const q=el("div",{class:"q"},qhead(i,it.q,it.gl));const inp=el("input",{type:"text",class:"ko",autocomplete:"off",autocapitalize:"off",spellcheck:"false","aria-label":"Javob",lang:"ko"});const fb=el("div",{class:"fb"});let tried=false,ok=false,hints=0;
+    const check=()=>{if(ok)return;const v=norm(inp.value);if(!v){fb.className="fb hint";fb.textContent="Avval javob yozing.";return;}
+      if(it.a.some(a=>norm(a)===v)){ok=true;inp.className="ko right";inp.readOnly=true;fb.className="fb ok";fb.textContent="✓ To'g'ri!";speak(it.a[0]);if(!tried)first++;if(++right===x.items.length)markDone(key,first,x.items.length);}
+      else{tried=true;inp.className="ko wrong";fb.className="fb no";fb.textContent="✗ Qayta urinib ko'ring.";}};
+    inp.onkeydown=e=>{if(e.key==="Enter")check();};
+    const hint=()=>{if(ok)return;tried=true;hints++;const a=[...it.a[0]];const n=Math.min(hints,Math.max(1,a.length-1));fb.className="fb hint";fb.innerHTML="";fb.append("💡 Boshlanishi: ",el("b",{class:"ko"},a.slice(0,n).join("")+"…"));};
+    q.append(el("div",{class:"row"},inp,el("button",{class:"btn",onclick:check},"Tekshirish"),el("button",{class:"btn ghost",onclick:hint},"Yordam")),fb);c.append(q);});return c;}
+
+function rOrder(x,key){const c=card(x.title,x.instr);let right=0,first=0;
+  x.items.forEach((it,i)=>{const q=el("div",{class:"q"},el("div",{},el("span",{class:"qn"},i+1),it.gl));const build=el("div",{class:"build ko"});const pool=el("div",{class:"opts ko"});const fb=el("div",{class:"fb"});let picked=[],tried=false,ok=false;
+    let chips=shuffle(it.w.map((w,j)=>({w,j})));if(chips.length>1&&chips.every((z,k)=>z.j===k))chips.reverse();
+    const draw=()=>{build.innerHTML="";pool.innerHTML="";
+      picked.forEach((p,k)=>build.append(el("button",{class:"chip",onclick:()=>{if(ok)return;picked.splice(k,1);draw();}},p.w)));
+      chips.forEach(p=>{const u=picked.includes(p);pool.append(el("button",{class:"chip"+(u?" used":""),onclick:()=>{if(ok||u)return;picked.push(p);draw();}},p.w));});};
+    const check=()=>{if(ok)return;if(picked.length<it.w.length){fb.className="fb hint";fb.textContent="Hamma so'zlarni ishlating.";return;}
+      const got=norm(picked.map(p=>p.w).join(" "));
+      if([it.w.join(" "),...it.alt].some(s=>norm(s)===got)){ok=true;fb.className="fb ok";fb.textContent="✓ To'g'ri!";speak(picked.map(p=>p.w).join(" "));if(!tried)first++;if(++right===x.items.length)markDone(key,first,x.items.length);}
+      else{tried=true;fb.className="fb no";fb.textContent="✗ Tartib noto'g'ri. So'zni bosib qaytaring.";}};
+    draw();q.append(build,pool,el("div",{class:"row"},el("button",{class:"btn",onclick:check},"Tekshirish"),el("button",{class:"btn ghost",onclick:()=>{if(!ok){picked=[];fb.textContent="";draw();}}},"Tozalash")),fb);c.append(q);});return c;}
+
+function rText(x){const c=card(x.title,x.instr);const d=el("div",{class:"text ko"});
+  x.paras.forEach(p=>{const P=el("p");p.split(/(\[[^\]]+\])/).forEach(seg=>{const m=seg.match(/^\[([^|]+)\|([^\]]+)\]$/);if(m){const b=el("button",{class:"gw"},m[1]);let tip=null;b.onclick=()=>{if(tip){tip.remove();tip=null;}else{tip=el("span",{class:"tip"},m[2]);b.after(tip);speak(m[1]);}};P.append(b);}else P.append(seg);});
+    d.append(P);});c.append(d);return c;}
+
+function rTable(x){const c=card(x.title,x.instr);const t=el("table",{class:"syl ko"});const hr=el("tr",{},el("th",{},""));x.cols.forEach(v=>hr.append(el("th",{},v)));t.append(hr);
+  x.rows.forEach(([cons,ini])=>{const tr=el("tr",{},el("th",{},cons));x.cols.forEach((v,j)=>{const ch=String.fromCharCode(0xAC00+(x.ci[cons])*588+x.vi[j]*28);let rd=(ini+x.vr[j]);if(ch==="시")rd="shi";const td=el("td",{},el("button",{class:"sylb",onclick:e=>{const b=e.currentTarget;b.classList.toggle("open");b.querySelector(".r").textContent=b.classList.contains("open")?rd:"";}},el("span",{},ch),el("span",{class:"r"},"")));tr.append(td);});t.append(tr);});
+  c.append(el("div",{style:"overflow-x:auto"},t));return c;}
+function sendCard(u){const c=card("📋 Natijani o'qituvchiga yuborish","Tugma ismingiz va ballaringizni nusxalaydi – keyin uni o'qituvchingizga xabar qilib yuboring.");const box=el("textarea",{class:"copybox",readonly:"readonly",style:"min-height:140px"});
+  c.append(el("button",{class:"btn",onclick:async()=>{const rep=report(u);box.value=rep;try{await navigator.clipboard.writeText(rep);toast("📋 Nusxalandi! Endi o'qituvchiga yuboring.");box.style.display="none";}catch(e){box.style.display="block";box.focus();box.select();toast("Matnni belgilab, nusxa oling.");}}},"📋 Nusxa olib, o'qituvchiga yuborish"),box);return c;}
+
+/* ============ YOZUV ============ */
+function countSent(v){return v.split(/[.!?\n]+/).map(z=>z.trim()).filter(z=>isKo(z)).length;}
+function rWriting(u){const w=u.writing,wrap=el("div");wrap.append(el("h2",{style:"margin:0 0 12px"},w.title));
+  const s=w.click,c1=card("1-qadam · Xatolarni toping","Xato yozilgan so'zlarni bosing, keyin «Tekshirish»ni bosing.",s.rule);const txt=el("div",{class:"clicktext ko"});const toks=[];
+  s.text.split(/(\*[^*]+\*|\s+)/).forEach(seg=>{if(!seg)return;if(/^\s+$/.test(seg)){txt.append(" ");return;}
+    const m=seg.match(/^\*([^|*]+)(?:\|([^*]+))?\*$/);let word,target=false,fix=null;if(m){word=m[1];target=true;fix=m[2]||null;}else word=seg;
+    const mm=word.match(/^(.*?)([.?!,']*)$/s);const core=mm[1],punct=mm[2];if(!core){txt.append(punct);return;}
+    const lead=core.match(/^(['"]*)(.*)$/s);if(lead[1])txt.append(lead[1]);
+    const b=el("button",{class:"cw"},lead[2]);const tk={b,target,fix,core:lead[2]};b.onclick=()=>{if(c1._checked)return;b.classList.toggle("sel");};toks.push(tk);txt.append(b);if(punct)txt.append(punct);});
+  const fb1=el("div",{class:"fb"});const key1=u.id+"-writing-1";
+  const chk=el("button",{class:"btn",style:"margin-top:10px",onclick:()=>{if(c1._checked){c1._checked=false;toks.forEach(t=>{t.b.className="cw";t.b.textContent=t.core;});chk.textContent="Tekshirish";fb1.textContent="";return;}
+    c1._checked=true;let hit=0,wrong=0,n=0;toks.forEach(t=>{const sel=t.b.classList.contains("sel");if(t.target){n++;t.b.textContent=t.fix?`${t.core} → ${t.fix}`:t.core;if(sel){hit++;t.b.className="cw right";}else t.b.className="cw missed";}else if(sel){wrong++;t.b.className="cw wrong";}else t.b.className="cw";});
+    if(hit===n&&!wrong){fb1.className="fb ok";fb1.textContent=`✓ Hammasi to'g'ri! (${hit}/${n})`;markDone(key1,hit,n);}else{fb1.className="fb no";fb1.textContent=`Topildi: ${hit}/${n}. Ortiqcha belgilangan: ${wrong}. Qaytadan urinib ko'ring.`;}
+    chk.textContent="Qaytadan";}},"Tekshirish");
+  c1.append(txt,chk,fb1);wrap.append(c1);
+  const c2=card("2-qadam · Namunani o'qing","Namuna matnni diqqat bilan o'qing.");c2.append(el("div",{class:"model ko"},el("b",{},w.model.title),w.model.text));wrap.append(c2);
+  const key3=u.id+"-writing-3";const c3=card("3-qadam · Navbat sizda ✍️",w.task);c3.append(el("div",{class:"rule"},w.include));
+  const ta=el("textarea",{class:"ko",placeholder:"Shu yerga koreys tilida yozing…","aria-label":"Matn",lang:"ko"});ta.value=S.text[u.id]||"";
+  const cnt=el("div",{class:"small"});const ul=el("ul",{class:"checks"});
+  const upd=()=>{const v=ta.value;S.text[u.id]=v;save();const sents=countSent(v);
+    cnt.textContent=`${sents} ta gap (maqsad: ${w.min}–${w.max})`;ul.innerHTML="";let all=true;
+    w.checks.forEach(([test,label])=>{const ok=test==="sent"?sents>=w.min:test.test(v);if(!ok)all=false;ul.append(el("li",{class:ok?"ok":""},(ok?"✓ ":"○ ")+label));});
+    if(all&&!S.done[key3])markDone(key3);};
+  ta.oninput=upd;
+  const box=el("textarea",{class:"copybox",readonly:"readonly",style:"min-height:140px"});
+  const send=el("button",{class:"btn",onclick:async()=>{const rep=report(u);box.value=rep;try{await navigator.clipboard.writeText(rep);toast("📋 Nusxalandi! Endi o'qituvchiga yuboring.");box.style.display="none";}catch(e){box.style.display="block";box.focus();box.select();toast("Matnni belgilab, nusxa oling.");}}},"📋 Nusxa olib, o'qituvchiga yuborish");
+  c3.append(ta,cnt,ul,send,box,el("div",{class:"small",style:"margin-top:8px"},"Matningiz shu qurilmada saqlanadi. Tugma matningiz va ballaringizni nusxalaydi – keyin uni o'qituvchingizga xabar qilib yuboring."));
+  wrap.append(c3);setTimeout(upd);return wrap;}
+
+function report(u){const [d,t]=unitProgress(u);const lines=[`Koreys tili uy vazifasi (한국어 첫걸음 ${LEVEL})`,`Ism: ${S.name||"(yozilmagan)"}`,`${u.label||(u.num+"-dars")}: ${u.ko} (${u.uz})`,`Bajarildi: ${d} / ${t}`,""];
+  for(const[tab,lab]of TABS){if(tab==="writing"&&!Array.isArray(u.writing))continue;u[tab].forEach((x,i)=>{const k=`${u.id}-${tab}-${i}`;if(x.type==="text"||x.type==="bank")return;const sc=S.score[k];lines.push(`${lab} · ${x.title}: ${S.done[k]?(sc?`${sc[0]}/${sc[1]} (birinchi urinishda)`:"✓"):"bajarilmagan"}`);});}
+  if(Array.isArray(u.writing))return lines.join("\n");
+  lines.push(`Yozuv · Xatolarni topish: ${S.done[u.id+"-writing-1"]?"✓":"bajarilmagan"}`);lines.push("","— Matnim —",(S.text[u.id]||"").trim()||"(bo'sh)");return lines.join("\n");}
+
+/* ============ SAHIFALAR ============ */
+let cur=null;
+function refreshTabs(){if(!cur)return;document.querySelectorAll(".tabs button").forEach(b=>{b.querySelector(".dot").textContent=tabDone(cur,b.dataset.t)?" ✓":"";});const h=$("#prog");if(h){const[d,t]=unitProgress(cur);h.textContent=`${d} / ${t} topshiriq bajarildi`;}}
+function tgLink(){return el("a",{href:"https://t.me/"+TG,target:"_blank",rel:"noopener",class:"tg"},"@"+TG);}
+function footer(){return el("footer",{},el("div",{class:"author"},AUTHOR),el("div",{},tgLink()),el("div",{class:"small",style:"margin-top:4px"},BOOK));}
+
+function home(){cur=null;document.documentElement.style.setProperty("--accent","#2f6fd6");const app=$("#app");app.innerHTML="";
+  let D=0,Tt=0;UNITS.forEach(u=>{const[d,t]=unitProgress(u);D+=d;Tt+=t;});
+  app.append(el("header",{},el("div",{class:"in"},el("h1",{},"Koreys tili · Uy vazifasi ",el("span",{class:"ko"},"숙제")),el("p",{},SUB),el("p",{class:"hauthor"},AUTHOR+" · ",tgLink()))));
+  const m=el("main");const nc=el("div",{class:"card"},el("label",{class:"nm",for:"nm"},"Ismingiz / 이름"));const ni=el("input",{type:"text",id:"nm",placeholder:"Ismingizni yozing"});ni.value=S.name;ni.oninput=()=>{S.name=ni.value;save();};
+  nc.append(ni,el("div",{class:"bar",style:"--uc:var(--ok)"},el("i",{style:`width:${Tt?D/Tt*100:0}%`})),el("div",{class:"small"},`Umumiy natija: ${D} / ${Tt} topshiriq`));m.append(nc);
+  UNITS.forEach(u=>{if(u.section)m.append(el("h2",{class:"sect"},u.section));const[d,t]=unitProgress(u);const b=el("button",{class:"card unit",style:`--uc:${u.color}`,onclick:()=>{location.hash=u.id+"-vocab";}},
+    el("div",{class:"tag"},u.tag||`${u.num}-dars · 제${u.num}과`),el("h2",{},el("span",{class:"ko"},u.ko)," ",el("span",{style:"font-weight:600;color:var(--muted);font-size:1rem"},u.uz),d===t?el("span",{class:"donebadge"},"✓ Tugallandi"):null),el("div",{class:"topics"},u.topics),el("div",{class:"bar"},el("i",{style:`width:${t?d/t*100:0}%`})),el("div",{class:"small"},`${d} / ${t} topshiriq bajarildi`));m.append(b);});
+  app.append(m,footer());window.scrollTo(0,0);}
+
+function unitPage(u,tab){cur=u;document.documentElement.style.setProperty("--accent",u.color);const app=$("#app");app.innerHTML="";
+  const[d,t]=unitProgress(u);
+  const nav=el("div",{style:"display:flex;gap:6px;flex-wrap:wrap"},el("button",{class:"back",onclick:()=>{location.hash="home";}},"← Barcha darslar"));
+  if(u.num>1)nav.append(el("button",{class:"back",onclick:()=>{location.hash=`u${u.num-1}-vocab`;}},`‹ ${UNITS[u.num-2].label||(u.num-1)+"-dars"}`));
+  if(u.num<UNITS.length)nav.append(el("button",{class:"back",onclick:()=>{location.hash=`u${u.num+1}-vocab`;}},`${UNITS[u.num].label||(u.num+1)+"-dars"} ›`));
+  app.append(el("header",{},el("div",{class:"in"},nav,el("h1",{},`${u.label||(u.num+"-dars")} · `,el("span",{class:"ko"},u.ko)," ",el("span",{style:"font-weight:600;opacity:.85;font-size:.8em"},u.uz)),el("p",{id:"prog"},`${d} / ${t} topshiriq bajarildi`))));
+  const m=el("main");const tb=el("div",{class:"tabs"});
+  TABS.forEach(([k,l])=>tb.append(el("button",{class:k===tab?"on":"","data-t":k,onclick:()=>{location.hash=`${u.id}-${k}`;}},l,el("span",{class:"dot"},""))));m.append(tb);
+  if(tab==="writing"&&!Array.isArray(u.writing))m.append(rWriting(u));
+  else{u[tab].forEach((x,i)=>{const key=`${u.id}-${tab}-${i}`;const f={bank:rBank,match:rMatch,mc:rMC,tf:rTF,fill:rFill,order:rOrder,text:rText,table:rTable}[x.type];m.append(f(x,key));});
+    if(tab==="writing")m.append(sendCard(u));}
+  const idx=TABS.findIndex(z=>z[0]===tab);
+  if(idx<TABS.length-1)m.append(el("button",{class:"btn next",onclick:()=>{location.hash=`${u.id}-${TABS[idx+1][0]}`;}},`Keyingisi: ${TABS[idx+1][1]} →`));
+  else if(u.num<UNITS.length)m.append(el("button",{class:"btn next",onclick:()=>{location.hash=`u${u.num+1}-vocab`;}},`Keyingi dars: ${UNITS[u.num].label||(u.num+1)+"-dars"} →`));
+  else m.append(el("button",{class:"btn ghost next",onclick:()=>{location.hash="home";}},"← Barcha darslarga qaytish"));
+  app.append(m,footer());refreshTabs();window.scrollTo(0,0);}
+
+function route(){const h=location.hash.replace("#","");const m=h.match(/^u(\d+)-(vocab|reading|grammar|writing)$/);const u=m&&UNITS[+m[1]-1];if(u)unitPage(u,m[2]);else home();}
+window.addEventListener("hashchange",route);
+route();
+
+</script>
+</body>
+</html>
